@@ -1,27 +1,61 @@
 /* NavBar.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-#navbar {
+.mynavbar {
   font-family: 'Roboto', sans-serif;
-  background-color: rgba(0, 0, 0, 0.5);
+  /*background-color: rgba(0, 0, 0, 0.5);*/
+  background-color: transparent;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#navLink {
-  color: #fff;
-  font-weight: 500;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  transition: color 0.3s, background-color 0.3s;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  text-transform: uppercase;
+.mynavbar.myactive {
+  background-color: #fff;
 }
 
-#navLink:hover {
-  background-color: #5c0909;
+.mynavbar.myactive .navLink {
+  color: #000;
+  border: none;
+}
 
+.mynavbar.myactive .navLink:hover {
+  color: #fff;
+  font-weight: 500;
+
+}
+
+.mynavbar .navLink {
+  color: #fff;
+  font-weight: 500;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transition: color 0.3s, background-color 0.3s;
+  text-decoration: none;
+  border-radius: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 1px solid #dddada;
+
+}
+
+
+
+.mynavbar .navLink:hover {
+  background-color: red;
+  color:#fff;
+}
+
+@media screen and (max-width: 767px) {
+
+  .mynavbar .navLink { 
+    border: none;
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    background-color: #fff;
+    color: #000;
+  }
+  
+
+  .mynavbar.myactive {
+    background-color: #fff;
+  }
 }
 
