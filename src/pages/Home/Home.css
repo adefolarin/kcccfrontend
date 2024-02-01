@@ -108,6 +108,58 @@ banner
   margin-top: 30px;
 }
 
+
+
+#bluecolor {
+  color: #135592;
+  font-weight: 700;
+}
+
+#sectionmargin {
+  margin-top: 70px;
+}
+
+
+
+.tabitems {
+  color: white;
+  background-color: #135592;
+  margin-left: 2px;
+  margin-right: 2px;
+
+}
+
+.tabitems .tablink {
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 0;
+  border: none;
+}
+
+.tablink {
+   color: #fff;
+}
+
+.tablink.active {
+  background-color: red !important;
+  color: #fff;
+}
+
+#vidbtn {
+  background-color: red;
+  color:#fff;
+  border-radius: 0;
+  border: none;
+  font-size: 25px;
+}
+
+.valign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
 @media screen and (max-width: 767px) {
 
   .main-banner .caption h6 {
@@ -127,16 +179,19 @@ banner
     margin-top: 15px;
   }
 
+  .valign {
+    height: 100px;
+  }
+
+  .tabitems {
+    margin-top: 3px;
+  
+  }
+
 }
 
-#bluecolor {
-  color: #135592;
-  font-weight: 700;
-}
 
-#sectionmargin {
-  margin-top: 70px;
-}
+
 
 
 

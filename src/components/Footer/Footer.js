@@ -1,10 +1,10 @@
 // VideoBackground.js
 import React from 'react';
-import { Container, Col, Row, Card, ButtonToolbar, ButtonGroup, Image, InputGroup, Form, Button  } from 'react-bootstrap';
+import { Container, Col, Row, ButtonGroup, Image, InputGroup, Form, Button  } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapLocationDot, faMousePointer } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faFontAwesome, faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 import './Footer.css'
 
@@ -116,7 +116,7 @@ export const Footer = () => {
                 <Button class="btn btn-danger" style={{ backgroundColor:'red', color:'#fff', borderRadius:'0', border:'none' }}>
                    <FontAwesomeIcon icon={faMousePointer} />
                 </Button>
-              </InputGroup>
+                </InputGroup>
                </p>
            </div>
         </Col>
