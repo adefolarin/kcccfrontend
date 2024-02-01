@@ -175,15 +175,15 @@ export const Home = () => {
                                   <h6 id="bluecolor" className="text-center">Tranforming Lives Through The Word of God</h6>
                                   <p id="bluecolor" className="text-center" style={{ fontSize: '12px' }}>
                                     <FontAwesomeIcon icon={faUser} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '400' }}>Bishop Ade Ajala</span> &nbsp;
+                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>Bishop Ade Ajala</span> &nbsp;
 
 
                                     <FontAwesomeIcon icon={faClock} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '400' }}>October 8, 2023</span> &nbsp;
+                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>October 8, 2023</span> &nbsp;
 
 
                                     <FontAwesomeIcon icon={faLocation} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '400' }}>Aurora, Denver</span>
+                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>Aurora, Denver</span>
 
                                   </p>
                                 </div>
