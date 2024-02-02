@@ -216,7 +216,12 @@ banner
   text-align: right;
 }
 
+
 @media screen and (max-width: 767px) {
+
+  .caption {
+    text-align: center;
+  }
 
   .main-banner .caption h6 {
     font-weight: 500;
@@ -292,6 +297,10 @@ banner
 
 #foodbankid {
   width: 100%;
+  text-align: center;
+}
+
+.homeabout {
   text-align: center;
 }
 

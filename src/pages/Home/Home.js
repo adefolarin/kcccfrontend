@@ -33,14 +33,16 @@ export const Home = () => {
                     <p>Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.</p>
                     <div className="main-button-red">
                       <div className="scroll-to-section">
-                        <ButtonToolbar aria-label="Toolbar with button groups">
+                        <p>
+                    
                           <ButtonGroup className="me-2" aria-label="First group">
                             <Link to="#contact" className='btn btn-danger' id="bannerbtn">Welcome Message</Link>
                           </ButtonGroup>
                           <ButtonGroup className="me-2" aria-label="Second group">
                             <Link to="#contact" className='btn btn-danger' id="bannerbtn">Join Us Now!</Link>
                           </ButtonGroup>
-                        </ButtonToolbar>
+                     
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -91,7 +93,7 @@ export const Home = () => {
       </div>
 
       {/*  About  */}
-      <div id="sectionmargin">
+      <div id="sectionmargin" className='homeabout'>
         <Container>
           <Row>
             <Col md={6}>

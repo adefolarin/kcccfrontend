@@ -113,6 +113,14 @@ Sub header
    color: #f5a425;
 }
 
+.navbar-light .navbar-toggler
+ {
+    outline: none;
+    background-color: red;
+    box-shadow: none;
+    
+}
+
 @media screen and (max-width: 767px) {
 
   .mynavbar .navLink { 
