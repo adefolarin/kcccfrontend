@@ -17,7 +17,7 @@ export const Footer = () => {
       <Row>
         <Col sm={12} md={4}>
         <div id="footercol1">
-        <Image src="images/logo.png"  width="150" height="50" fluid />
+        <Image src="images/logowhite.png"  width="220" height="120" fluid />
           <br></br><br></br>
           <div>
               <p>
