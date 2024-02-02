@@ -11,13 +11,13 @@ export const Event = () => {
             <br></br><br></br>
             <Container>
                 <Row>
-                    <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-                    <Col sm={4}>
+                    <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
+                    <Col md={4}>
                         <h4 id="bluecolor" class='text-center'>Events</h4>
                     </Col>
-                    <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
+                    <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
                     <br></br><br></br><br></br>
-                    <Col sm={4}>
+                    <Col md={4}>
                         <Card id="deptcard">
                             <Card.Img variant="top" src="images/img1.jpg" />
                             <Card.Body className='text-center'>
@@ -30,7 +30,7 @@ export const Event = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col sm={4}>
+                    <Col md={4}>
                         <Card id="deptcard">
                             <Card.Img variant="top" src="images/img1.jpg" />
                             <Card.Body className='text-center'>
@@ -43,7 +43,7 @@ export const Event = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col sm={4}>
+                    <Col md={4}>
                         <Card id="deptcard">
                             <Card.Img variant="top" src="images/img1.jpg" />
                             <Card.Body className='text-center'>
@@ -61,13 +61,13 @@ export const Event = () => {
 
               <br></br><br></br>
               <Row>
-                <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-                <Col sm={4}>
+                <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
+                <Col md={4}>
                   <p class="text-center">
                     <Link to="/event" class='text-center' id='bannerbtn' className='btn btn-danger'>More Events</Link>
                   </p>
                 </Col>
-                <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
+                <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
               </Row>
             </Container>
         </div>

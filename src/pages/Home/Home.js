@@ -94,10 +94,10 @@ export const Home = () => {
       <div id="sectionmargin">
         <Container>
           <Row>
-            <Col sm={6}>
+            <Col md={6}>
               <Image src="images/img1.jpg" thumbnail fluid style={{ width: '100%' }} />
             </Col>
-            <Col sm={6}>
+            <Col md={6}>
               <Row>
                 <Col sm={12}>
                   <h5 id="bluecolor" className='aboutkccc'>About KCCC</h5>
@@ -165,14 +165,14 @@ export const Home = () => {
                         <div
                           style={{ borderRadius: '0px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '20px' }}>
                           <Row>
-                            <Col sm={4}>
+                            <Col md={4}>
                               <div className=''>
                                 <video controls style={{ width: '100%', height: '200px', margin: 'auto' }}>
                                   <source src="videos/course.mp4" type="video/mp4" />
                                 </video>
                               </div>
                             </Col>
-                            <Col sm={4}>
+                            <Col md={4}>
                               <div className='valign'>
                                 <div>
                                   <h6 id="bluecolor" className="text-center">Tranforming Lives Through The Word of God</h6>
@@ -192,7 +192,7 @@ export const Home = () => {
                                 </div>
                               </div>
                             </Col>
-                            <Col sm={4}>
+                            <Col md={4}>
                               <div className='valign'>
                                 <p>
                                   <ButtonGroup className="me-2" aria-label="First group">
@@ -299,14 +299,14 @@ export const Home = () => {
         <br></br><br></br>
         <Container style={{ backgroundColor: '#E1EDF3', padding: '50px' }}>
           <Row>
-            <Col sm={8}>
+            <Col md={8}>
               <Row>
-                <Col sm={4}>
+                <Col md={4}>
                   <div>
                     <Image fluid src="images/img1.jpg" roundedCircle />
                   </div>
                 </Col>
-                <Col sm={8}>
+                <Col md={8}>
                   <div id="faithid">
                     <h5 id="bluecolor">Sharing Our Faith</h5>
                     <p>
@@ -316,7 +316,7 @@ export const Home = () => {
                 </Col>
               </Row>
             </Col>
-            <Col sm={4}>
+            <Col md={4}>
               <p style={{ textAlign: 'center', verticalAlign: 'middle' }}>
                 <div id="homegivebtnid">
                   <Link to="#" className='btn btn-danger' id="homegivebtn">
@@ -370,7 +370,7 @@ export const Home = () => {
         <br></br><br></br>
         <Container style={{ backgroundColor: '#A7C8DD' }} id="storecontainer">
           <Row>
-            <Col sm={7}>
+            <Col md={7}>
               <div id="homestoreid">
                 <h5 id="bluecolor">Visit Our E-Store</h5>
                 <p>
@@ -381,9 +381,9 @@ export const Home = () => {
                 </Link>
               </div>
             </Col>
-            <Col sm={5}>
+            <Col md={5}>
               <div style={{ display: 'flex', justifyContent: 'end', justifyItems: 'end' }}>
-                <Image className='float-end' fluid src="images/img1.jpg" style={{ width: '100', objectFit: 'cover' }} />
+                <Image className='float-end' fluid src="images/img1.jpg" style={{ width: '100%', objectFit: 'cover' }} />
               </div>
             </Col>
           </Row>
@@ -393,14 +393,14 @@ export const Home = () => {
       {/*  FOOD BANK  */}
       <div>
         <br></br><br></br>
-        <Container style={{ backgroundColor: '#E1EDF3D' }} id="storecontainer">
+        <Container style={{ backgroundColor: '#E1EDF3' }} id="storecontainer">
           <Row>
-            <Col sm={5}>
+            <Col md={5}>
               <div style={{ display: 'flex', justifyContent: 'start', justifyItems: 'start' }}>
                 <Image className='float-start' fluid src="images/img1.jpg" style={{ width: '100%', objectFit: 'cover' }} />
               </div>
             </Col>
-            <Col sm={7}>
+            <Col md={7}>
               <div id="foodbankid">
                 <h5 id="bluecolor">KCCC FOOD BANK</h5>
                 <p>

@@ -53,8 +53,8 @@ export function NavBar() {
           className={mynavbar ? 'mynavbar myactive' : 'mynavbar'} fixed='top'>
           <Container className='navbarContainer'>
             <Navbar.Brand href="/">
-              <Image fluid src="images/logo.png"
-                width="150" height="50"
+              <Image fluid src={mynavbar ? "images/logoblack.png": "images/logowhite.png" }
+                width="220" height="120" id="logo"
                 alt="Logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ backgroundColor: '#fff' }} />

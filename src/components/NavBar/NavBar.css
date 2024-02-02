@@ -128,7 +128,7 @@ Sub header
   }
 
   .mynavbar {
-    margin-top: 65px;
+    margin-top: 75px;
   }
 
   .sub-header {
@@ -150,5 +150,23 @@ Sub header
   #subheaderlink {
    text-align: center;
   }
+
+}
+
+@media screen and (max-width: 507px) {
+  .mynavbar {
+    margin-top: 75px;
+  }
+  #logo {
+    width: 150px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+   #logo {
+     width: 150px;
+     height: 40px;
+   }
 }
 

@@ -18,11 +18,11 @@ export const Departments = () => {
                         </Col>
                         <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
 
-                        <Col sm={12}>
+                        <Col md={12}>
                             <div>
                                 <br></br>
                                 <Row>
-                                    <Col sm={4}>
+                                    <Col md={4}>
                                         <Card id="deptcard">
                                             <Card.Title>
                                                 <div className='text-center' id="bluecolor">
@@ -42,7 +42,7 @@ export const Departments = () => {
                                             </Card.Body>
                                         </Card>
                                     </Col>
-                                    <Col sm={4}>
+                                    <Col md={4}>
                                         <Card id="deptcard">
                                             <Card.Title>
                                                 <div className='text-center' id="bluecolor">
@@ -62,7 +62,7 @@ export const Departments = () => {
                                             </Card.Body>
                                         </Card>
                                     </Col>
-                                    <Col sm={4}>
+                                    <Col md={4}>
                                         <Card id="deptcard">
                                             <Card.Title>
                                                 <div className='text-center' id="bluecolor">
