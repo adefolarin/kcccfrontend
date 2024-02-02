@@ -198,6 +198,24 @@ banner
   flex-direction: column;
 }
 
+#homestoreid {
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+
+}
+
+#storecontainer {
+  padding: 0px;
+}
+
+#foodbankid {
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+  text-align: right;
+}
+
 @media screen and (max-width: 767px) {
 
   .main-banner .caption h6 {
@@ -260,7 +278,25 @@ banner
   flex-direction: column;
 }
 
+#homestoreid {
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+
 }
+
+#storecontainer {
+   padding-left:10px;
+   padding-right: 10px;
+}
+
+#foodbankid {
+  width: 100%;
+  text-align: center;
+}
+
+}
+
 
 
 

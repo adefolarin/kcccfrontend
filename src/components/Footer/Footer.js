@@ -100,7 +100,7 @@ export const Footer = () => {
         </Col>
 
         <Col sm={12} md={4}>
-           <div>
+           <div id="letterid">
               <h5 className='text-center'>NEWS LETTER</h5>
               <br></br>
               <p>

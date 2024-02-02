@@ -15,6 +15,8 @@ import './Home.css'
 export const Home = () => {
   return (
     <div>
+
+      {/* Banner */}
       <div expand="lg">
         {/* ***** Main Banner Area Start ***** */}
         <section className="section main-banner" id="top" data-section="section1" expand="lg">
@@ -52,6 +54,7 @@ export const Home = () => {
       </div>
 
 
+      {/* Year in Review and Event Clock */}
       <div>
         <Container style={{ position: 'relative' }}>
           <Row>
@@ -62,7 +65,7 @@ export const Home = () => {
                     <h5 id="bluecolor">YEAR IN REVIEW</h5>
                   </Card.Title>
                   <Card.Text>
-                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
                   </Card.Text>
                   <Link to="#" class="btn btn-danger" variant="danger" id="btn">Learn More</Link>
                 </Card.Body>
@@ -87,14 +90,13 @@ export const Home = () => {
         </Container>
       </div>
 
+      {/*  About  */}
       <div id="sectionmargin">
         <Container>
           <Row>
             <Col sm={6}>
               <Image src="images/img1.jpg" thumbnail fluid style={{ width: '100%' }} />
             </Col>
-
-
             <Col sm={6}>
               <Row>
                 <Col sm={12}>
@@ -130,7 +132,7 @@ export const Home = () => {
         </Container>
       </div>
 
-
+      {/*  Watch and Listen */}
       <div id="sectionmargin">
         <Container>
           <Row>
@@ -247,8 +249,9 @@ export const Home = () => {
       </div>
 
 
+      {/* Social Media */}
       <div>
-        <br></br><br></br>
+        <br></br>
         <Container>
           <Row>
             <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
@@ -291,7 +294,7 @@ export const Home = () => {
       </div>
 
 
-
+      {/* Sharing Our Faith */}
       <div>
         <br></br><br></br>
         <Container style={{ backgroundColor: '#E1EDF3', padding: '50px' }}>
@@ -326,30 +329,93 @@ export const Home = () => {
         </Container>
       </div>
 
+
+      {/* Department */}
       <div>
         <Departments />
       </div>
 
+
+
+      {/* Support Our Mission */}
       <div>
         <br></br><br></br>
         <Container>
-        <div style={{ position:'relative' }}>
-            <Image fluid src="images/img3.jpg" alt="Card image" style={{ width:'100%', height:'270px' }} />
-            <div id="overlay" style={{ position:'absolute',width:'100%',height:'100%',top:'0',bottom:'0',right:'0',left:'0',backgroundColor: 'rgba(0,0,0,0.5)' }}>
-            <div id="missionid" className='text-center'>
-              <h4>Support Our Mission</h4>
-                 <p>
-                 Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
-                 </p>
+          <div style={{ position: 'relative' }}>
+            <Image fluid src="images/img3.jpg" alt="Card image" style={{ width: '100%', height: '270px' }} />
+            <div id="overlay" style={{ position: 'absolute', width: '100%', height: '100%', top: '0', bottom: '0', right: '0', left: '0', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+              <div id="missionid" className='text-center'>
+                <h4>Support Our Mission</h4>
+                <p>
+                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                </p>
                 <p><Link to="" className='btn text-white' id="homegivebtn" >Donate Now</Link></p>
-            </div>
+              </div>
             </div>
           </div>
         </Container>
       </div>
 
-    <Event />
-  
+
+
+      {/* Event */}
+      <div>
+        <Event />
+      </div>
+
+
+
+      {/*   E-STORE   */}
+      <div>
+        <br></br><br></br>
+        <Container style={{ backgroundColor: '#A7C8DD' }} id="storecontainer">
+          <Row>
+            <Col sm={7}>
+              <div id="homestoreid">
+                <h5 id="bluecolor">Visit Our E-Store</h5>
+                <p>
+                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                </p>
+                <Link to="#" className='btn btn-danger' id="homegivebtn">
+                  Explore Now
+                </Link>
+              </div>
+            </Col>
+            <Col sm={5}>
+              <div style={{ display: 'flex', justifyContent: 'end', justifyItems: 'end' }}>
+                <Image className='float-end' fluid src="images/img1.jpg" style={{ width: '100', objectFit: 'cover' }} />
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+      {/*  FOOD BANK  */}
+      <div>
+        <br></br><br></br>
+        <Container style={{ backgroundColor: '#E1EDF3D' }} id="storecontainer">
+          <Row>
+            <Col sm={5}>
+              <div style={{ display: 'flex', justifyContent: 'start', justifyItems: 'start' }}>
+                <Image className='float-start' fluid src="images/img1.jpg" style={{ width: '100%', objectFit: 'cover' }} />
+              </div>
+            </Col>
+            <Col sm={7}>
+              <div id="foodbankid">
+                <h5 id="bluecolor">KCCC FOOD BANK</h5>
+                <p>
+                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                </p>
+                <p className='text-right'>
+                <Link to="#" className='btn btn-danger' id="homegivebtn">
+                  Learn More
+                </Link>
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
 
     </div>
   );
