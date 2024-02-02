@@ -10,7 +10,7 @@ import './Footer.css'
 
 export const Footer = () => {
   return (
-   <div>
+   <div style={{ marginTop:'20px' }}>
  
     <div style={{ backgroundColor:'#135592', paddingTop:'50px', paddingBottom:'50px'}} id="footer">
     <Container>

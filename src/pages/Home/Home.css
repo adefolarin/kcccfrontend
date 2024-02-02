@@ -144,7 +144,6 @@ banner
   background-color: red !important;
   color: #fff;
 }
-
 #vidbtn {
   background-color: red;
   color:#fff;
@@ -158,6 +157,45 @@ banner
   justify-content: center;
   align-items: center;
   height: 200px;
+}
+
+#socialbtn {
+   background-color: #135592;
+   color: #fff;
+   border: none;
+   margin-left: 25px;
+   margin-right: 25px;
+   font-size: 30px;
+}
+
+#homegivebtnid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+
+#homegivebtn {
+  border-radius: 0;
+  background-color: red;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#deptcard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding:10px;
+}
+
+#missionid {
+  color:#fff; 
+  width: 40%;
+  margin: auto; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height:  250px; 
+  flex-direction: column;
 }
 
 @media screen and (max-width: 767px) {
@@ -187,6 +225,40 @@ banner
     margin-top: 3px;
   
   }
+
+  #socialbtn {
+    background-color: #135592;
+    color: #fff;
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 30px;
+ }
+
+ #faithid {
+    margin-top: 20px;
+    text-align: center;
+ }
+
+ #homegivebtnid {
+  height: 30px;
+ }
+
+ #deptcard {
+   margin-top: 5px;
+   margin-bottom: 5px;
+ }
+
+ #missionid {
+  color:#fff; 
+  width: 100%;
+  margin: auto; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height:  270px; 
+  flex-direction: column;
+}
 
 }
 
