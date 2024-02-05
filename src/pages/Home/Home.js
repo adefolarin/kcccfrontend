@@ -84,7 +84,21 @@ export const Home = () => {
                   <Card.Text>
                     <h6>Wednesday Night Bible Study</h6>
                     <div>
-                      <EventCountDownTimer />
+   
+                       <Row>
+                         <Col md={3}>
+                          <p className='minical'>
+                           <ButtonGroup vertical>
+                            <Button style={{ backgroundColor:'#d8d8d8',color:'#135592',fontWeight:'800',border:'none' }}>Dec 12</Button>
+                            <Button style={{ backgroundColor:'#135592',color:'#fff',fontWeight:'800',border:'none',borderRadius:'5px',height:'' }}>8:00am</Button>
+                          </ButtonGroup>
+                         </p>
+                         </Col>
+                         <Col md={8}>
+                         <EventCountDownTimer />
+                          </Col>
+                       </Row>
+                   
                     </div>
                   </Card.Text>
                   <Link to="#" class="btn btn-danger" variant="danger" id="btn">Join Event</Link>

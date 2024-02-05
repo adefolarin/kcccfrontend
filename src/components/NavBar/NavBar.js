@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Row, Col, Image, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
 
 import './NavBar.css';
 
@@ -30,7 +31,18 @@ export function NavBar() {
         <Container>
           <Row>
             <Col sm={8}>
-              <p style={{ color: '#fff', margin: '0px' }} id="subheadernews">News content comes here</p>
+              <Carousel>
+                <Carousel.Item>
+                  <p style={{ color: '#fff', margin: '0px' }} id="subheadernews">News topic comes here 1</p>
+                </Carousel.Item>
+                <Carousel.Item>
+                  <p style={{ color: '#fff', margin: '0px' }} id="subheadernews">News topic comes here 2</p>
+                </Carousel.Item>
+                <Carousel.Item>
+                  <p style={{ color: '#fff', margin: '0px' }} id="subheadernews">News topic comes here 3</p>
+                </Carousel.Item>
+              </Carousel>
+
             </Col>
 
             <Col sm={4}>
@@ -53,7 +65,7 @@ export function NavBar() {
           className={mynavbar ? 'mynavbar myactive' : 'mynavbar'} fixed='top'>
           <Container className='navbarContainer'>
             <Navbar.Brand href="/">
-              <Image fluid src={mynavbar ? "images/logoblack.png": "images/logowhite.png" }
+              <Image fluid src={mynavbar ? "images/logoblack.png" : "images/logowhite.png"}
                 width="220" height="120" id="logo"
                 alt="Logo" />
             </Navbar.Brand>

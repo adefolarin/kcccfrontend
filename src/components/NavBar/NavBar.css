@@ -2,6 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 
+.slide .carousel-indicators {
+   display: none;
+}
+
+.carousel .carousel-control-prev, .carousel .carousel-control-next {
+  display: none;
+}
+
 .mynavbar {
   font-family: 'Roboto', sans-serif;
   /*background-color: rgba(0, 0, 0, 0.5);*/
@@ -58,21 +66,24 @@
  
 
 
-/*.navbar-light .navbar-toggler-icon {
- background-color: transparent;
- color:#135592;
- filter: invert(100%);
-}*/
+.navbar-light .navbar-toggler-icon {
+ background-color: #fff;
+ color:#fff;
+ filter: invert(0%);
+}
 
-/*.navbar-light .navbar-toggler
+.navbar-light .navbar-toggler
 {
-  outline: none;
-  border-color: transparent;
-  box-shadow: none;
   border-radius: 0;
-  background-color: transparent !important;
+  /*border-color: 1px solid #fff;
+  color: #fff !important;*/
+  /*background-color: transparent !important;*/
   
-}*/
+}
+
+.navbar-light .navbar-toggler:focus {
+  box-shadow: 0 0 0 0;
+}
 
 
 

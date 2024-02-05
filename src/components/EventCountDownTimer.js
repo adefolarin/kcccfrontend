@@ -1,6 +1,7 @@
 
 import React from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { Container, Col, Row, ButtonGroup, Button } from 'react-bootstrap';
 import "./EventCountDownTimer.css";
 
 const x = window.matchMedia("(max-width: 767px)");
@@ -19,7 +20,7 @@ const y = window.matchMedia("(max-width: 767px)")
 
 const changeSize = (x) => {
   if(x.matches) { 
-    timerProps.size = 60
+    timerProps.size = 70
   } else {
     timerProps.size = 100
   }
@@ -59,6 +60,7 @@ export function EventCountDownTimer() {
 
   return (
     <div className="Timer">
+
       <CountdownCircleTimer
         {...timerProps}
         colors="#7E2E84"
