@@ -57,17 +57,17 @@ export function NavBar() {
                 width="220" height="120" id="logo"
                 alt="Logo" />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ backgroundColor: '#fff' }} />
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" id='mynavbartoggle' />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="/" className='navLink'>Home</Nav.Link>
-                <Nav.Link href="/about" className='navLink'>About</Nav.Link>
-                <Nav.Link href="/sermon" className='navLink'>Sermons</Nav.Link>
-                <Nav.Link href="/derpmartment" className='navLink'>Departments</Nav.Link>
-                <Nav.Link href="/events" className='navLink'>Events</Nav.Link>
-                <Nav.Link href="/livestream" className='navLink'>Livestream</Nav.Link>
-                <Nav.Link href="/podcast" className='navLink'>Podcasts</Nav.Link>
-                <Nav.Link href="/donation" className='navLink'>Donation</Nav.Link>
+              <Nav className="me-auto" id="me-auto">
+                <Nav.Link href="/" className='navLink' id="navLink">Home</Nav.Link>
+                <Nav.Link href="/about" className='navLink' id="navLink">About</Nav.Link>
+                <Nav.Link href="/sermon" className='navLink' id="navLink">Sermons</Nav.Link>
+                <Nav.Link href="/derpmartment" className='navLink' id="navLink">Departments</Nav.Link>
+                <Nav.Link href="/events" className='navLink' id="navLink">Events</Nav.Link>
+                <Nav.Link href="/livestream" className='navLink' id="navLink">Livestream</Nav.Link>
+                <Nav.Link href="/podcast" className='navLink' id="navLink">Podcasts</Nav.Link>
+                <Nav.Link href="/donation" className='navLink' id="navLink">Donation</Nav.Link>
                 <NavDropdown title="Dropdown" className="navLink" style={{ display: 'none' }}>
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -81,8 +81,8 @@ export function NavBar() {
                 </NavDropdown>
               </Nav>
               <Nav>
-                <Nav.Link>
-                  <Link to="/give" className='btn btn-danger' style={{ borderRadius: '0', backgroundColor: 'red', fontWeight: '700', fontSize: '20px' }}>Give</Link>
+                <Nav.Link id="givenavheadlink">
+                  <Link to="/give" className='btn btn-danger' style={{ borderRadius: '0', backgroundColor: 'red', fontWeight: '700', fontSize: '20px' }} id="givenavlink">Give</Link>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { SearchFormGroup } from '../../components/Forms/SearchFormGroup';
 import { Departments } from '../../components/Departments';
 import { Event } from '../../components/Event';
+import { EventCountDownTimer } from '../../components/EventCountDownTimer';
 
 
 import './Home.css'
@@ -34,14 +35,14 @@ export const Home = () => {
                     <div className="main-button-red">
                       <div className="scroll-to-section">
                         <p>
-                    
+
                           <ButtonGroup className="me-2" aria-label="First group">
                             <Link to="#contact" className='btn btn-danger' id="bannerbtn">Welcome Message</Link>
                           </ButtonGroup>
                           <ButtonGroup className="me-2" aria-label="Second group">
                             <Link to="#contact" className='btn btn-danger' id="bannerbtn">Join Us Now!</Link>
                           </ButtonGroup>
-                     
+
                         </p>
                       </div>
                     </div>
@@ -82,7 +83,9 @@ export const Home = () => {
                   </Card.Title>
                   <Card.Text>
                     <h6>Wednesday Night Bible Study</h6>
-                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                    <div>
+                      <EventCountDownTimer />
+                    </div>
                   </Card.Text>
                   <Link to="#" class="btn btn-danger" variant="danger" id="btn">Join Event</Link>
                 </Card.Body>
@@ -409,9 +412,9 @@ export const Home = () => {
                   Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
                 </p>
                 <p className='text-right'>
-                <Link to="#" className='btn btn-danger' id="homegivebtn">
-                  Learn More
-                </Link>
+                  <Link to="#" className='btn btn-danger' id="homegivebtn">
+                    Learn More
+                  </Link>
                 </p>
               </div>
             </Col>
