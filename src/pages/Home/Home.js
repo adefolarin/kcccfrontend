@@ -10,6 +10,7 @@ import { Departments } from '../../components/Departments';
 import { Event } from '../../components/Event';
 import { EventCountDownTimer } from '../../components/EventCountDownTimer';
 import { SocialMedia } from '../../components/SocialMedia';
+import { NavLink } from 'react-bootstrap';
 
 
 import './Home.css'
@@ -147,7 +148,7 @@ export const Home = () => {
               </Row>
               <Row>
                 <Col sm={12}>
-                  <Link to="/about" className='btn btn-danger' id='btn'>Read More</Link>
+                  <Link to="/about" reloadDocument className='btn btn-danger' id='btn'>Read More</Link>
                 </Col>
               </Row>
             </Col>

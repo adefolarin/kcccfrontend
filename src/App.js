@@ -9,13 +9,13 @@ import { About } from './pages/About/About';
 //import './App.css';
 
 function App() {
-  return (
+  return ( 
     <div>
        <Router>
           <NavBar/>
           <Routes>
               <Route exact path = "/" element={<Home/>}></Route>
-              <Route exact path = "/about" element={<About/>}></Route>
+              <Route path = "/about" element={<About/>}></Route>
           </Routes>
           <Footer/>
        </Router>

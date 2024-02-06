@@ -30,7 +30,7 @@ export const Event = () => {
                                     </p>
                                     <h6 id="bluecolor">Event Title</h6>
                                 </Card.Title>
-                                <Card.Text>
+                                <Card.Text style={{ display:'none' }}>
                                     <p><Button className="btn btn-danger btn-sm" style={{ backgroundColor: 'red', border: 'none', borderRadius: '0', fontWeight: '600' }}>Ongoing</Button></p>
                                 </Card.Text>
                                 <Link variant="danger" className='btn btn-danger btn-sm'
@@ -51,7 +51,7 @@ export const Event = () => {
                                     </p>
                                     <h6 id="bluecolor">Event Title</h6>
                                 </Card.Title>
-                                <Card.Text>
+                                <Card.Text style={{ display:'none' }}>
                                     <p><Button className="btn btn-danger btn-sm" style={{ backgroundColor: 'red', border: 'none', borderRadius: '0', fontWeight: '600' }}>Ongoing</Button></p>
                                 </Card.Text>
                                 <Link variant="danger" className='btn btn-danger btn-sm'
@@ -72,7 +72,7 @@ export const Event = () => {
                                     </p>
                                     <h6 id="bluecolor">Event Title</h6>
                                 </Card.Title>
-                                <Card.Text>
+                                <Card.Text style={{ display:'none' }}>
                                     <p><Button className="btn btn-danger btn-sm" style={{ backgroundColor: 'red', border: 'none', borderRadius: '0', fontWeight: '600' }}>Ongoing</Button></p>
                                 </Card.Text>
                                 <Link variant="danger" className='btn btn-danger btn-sm'
