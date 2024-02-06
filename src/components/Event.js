@@ -19,9 +19,17 @@ export const Event = () => {
                     <br></br><br></br><br></br>
                     <Col md={4}>
                         <Card id="deptcard">
-                            <Card.Img variant="top" src="images/img1.jpg" />
+                            <Card.Img variant="top" src="images/event1.jpeg" />
                             <Card.Body className='text-center'>
-                                <Card.Title><h6 id="bluecolor">Event Title</h6></Card.Title>
+                                <Card.Title>
+                                    <p className='homeminicalevent'>
+                                        <ButtonGroup vertical>
+                                            <Button style={{ backgroundColor: '#d8d8d8', color: '#135592', fontWeight: '800', border: 'none', height: '50px' }}>Dec 12</Button>
+                                            <Button style={{ backgroundColor: '#135592', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '3px', height: '' }}>8:00am</Button>
+                                        </ButtonGroup>
+                                    </p>
+                                    <h6 id="bluecolor">Event Title</h6>
+                                </Card.Title>
                                 <Card.Text>
                                     <p><Button className="btn btn-danger btn-sm" style={{ backgroundColor: 'red', border: 'none', borderRadius: '0', fontWeight: '600' }}>Ongoing</Button></p>
                                 </Card.Text>
@@ -32,9 +40,17 @@ export const Event = () => {
                     </Col>
                     <Col md={4}>
                         <Card id="deptcard">
-                            <Card.Img variant="top" src="images/img1.jpg" />
+                            <Card.Img variant="top" src="images/event2.jpeg" />
                             <Card.Body className='text-center'>
-                                <Card.Title><h6 id="bluecolor">Event Title</h6></Card.Title>
+                                <Card.Title>
+                                    <p className='homeminicalevent'>
+                                        <ButtonGroup vertical>
+                                            <Button style={{ backgroundColor: '#d8d8d8', color: '#135592', fontWeight: '800', border: 'none', height: '50px' }}>Dec 12</Button>
+                                            <Button style={{ backgroundColor: '#135592', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '3px', height: '' }}>8:00am</Button>
+                                        </ButtonGroup>
+                                    </p>
+                                    <h6 id="bluecolor">Event Title</h6>
+                                </Card.Title>
                                 <Card.Text>
                                     <p><Button className="btn btn-danger btn-sm" style={{ backgroundColor: 'red', border: 'none', borderRadius: '0', fontWeight: '600' }}>Ongoing</Button></p>
                                 </Card.Text>
@@ -45,9 +61,17 @@ export const Event = () => {
                     </Col>
                     <Col md={4}>
                         <Card id="deptcard">
-                            <Card.Img variant="top" src="images/img1.jpg" />
+                            <Card.Img variant="top" src="images/event3.jpeg" />
                             <Card.Body className='text-center'>
-                                <Card.Title><h6 id="bluecolor">Event Title</h6></Card.Title>
+                                <Card.Title>
+                                    <p className='homeminicalevent'>
+                                        <ButtonGroup vertical>
+                                            <Button style={{ backgroundColor: '#d8d8d8', color: '#135592', fontWeight: '800', border: 'none', height: '50px' }}>Dec 12</Button>
+                                            <Button style={{ backgroundColor: '#135592', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '3px', height: '' }}>8:00am</Button>
+                                        </ButtonGroup>
+                                    </p>
+                                    <h6 id="bluecolor">Event Title</h6>
+                                </Card.Title>
                                 <Card.Text>
                                     <p><Button className="btn btn-danger btn-sm" style={{ backgroundColor: 'red', border: 'none', borderRadius: '0', fontWeight: '600' }}>Ongoing</Button></p>
                                 </Card.Text>
@@ -59,16 +83,16 @@ export const Event = () => {
                 </Row>
 
 
-              <br></br><br></br>
-              <Row>
-                <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-                <Col md={4}>
-                  <p class="text-center">
-                    <Link to="/event" class='text-center' id='bannerbtn' className='btn btn-danger'>More Events</Link>
-                  </p>
-                </Col>
-                <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-              </Row>
+                <br></br><br></br>
+                <Row>
+                    <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
+                    <Col md={4}>
+                        <p class="text-center">
+                            <Link to="/event" class='text-center' id='bannerbtn' className='btn btn-danger'>More Events</Link>
+                        </p>
+                    </Col>
+                    <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
+                </Row>
             </Container>
         </div>
     )

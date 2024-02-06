@@ -9,6 +9,7 @@ import { SearchFormGroup } from '../../components/Forms/SearchFormGroup';
 import { Departments } from '../../components/Departments';
 import { Event } from '../../components/Event';
 import { EventCountDownTimer } from '../../components/EventCountDownTimer';
+import { SocialMedia } from '../../components/SocialMedia';
 
 
 import './Home.css'
@@ -84,21 +85,21 @@ export const Home = () => {
                   <Card.Text>
                     <h6>Wednesday Night Bible Study</h6>
                     <div>
-   
-                       <Row>
-                         <Col md={3}>
+
+                      <Row>
+                        <Col md={3}>
                           <p className='minical'>
-                           <ButtonGroup vertical>
-                            <Button style={{ backgroundColor:'#d8d8d8',color:'#135592',fontWeight:'800',border:'none' }}>Dec 12</Button>
-                            <Button style={{ backgroundColor:'#135592',color:'#fff',fontWeight:'800',border:'none',borderRadius:'5px',height:'' }}>8:00am</Button>
-                          </ButtonGroup>
-                         </p>
-                         </Col>
-                         <Col md={8}>
-                         <EventCountDownTimer />
-                          </Col>
-                       </Row>
-                   
+                            <ButtonGroup vertical>
+                              <Button style={{ backgroundColor: '#d8d8d8', color: '#135592', fontWeight: '800', border: 'none',height:'50px' }}>Dec 12</Button>
+                              <Button style={{ backgroundColor: '#135592', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '5px', height: '' }}>8:00am</Button>
+                            </ButtonGroup>
+                          </p>
+                        </Col>
+                        <Col md={8}>
+                          <EventCountDownTimer />
+                        </Col>
+                      </Row>
+
                     </div>
                   </Card.Text>
                   <Link to="#" class="btn btn-danger" variant="danger" id="btn">Join Event</Link>
@@ -113,11 +114,12 @@ export const Home = () => {
       <div id="sectionmargin" className='homeabout'>
         <Container>
           <Row>
-            <Col md={6}>
-              <Image src="images/img1.jpg" thumbnail fluid style={{ width: '100%' }} />
+            <Col md={5}>
+              <Image src="images/about.png" thumbnail fluid id="homeaboutimg" />
             </Col>
-            <Col md={6}>
+            <Col md={7}>
               <Row>
+              <div style={{ marginTop: '20px' }}></div>
                 <Col sm={12}>
                   <h5 id="bluecolor" className='aboutkccc'>About KCCC</h5>
                   <h6>The Wealthy Place Where Champions Are Raised</h6>
@@ -135,10 +137,12 @@ export const Home = () => {
                   </p>
                 </Col>
                 <Col sm={6}>
+                  <div id="homeourmission">
                   <h5 id="bluecolor">Our Mission</h5>
                   <p>
                     Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
                   </p>
+                  </div>
                 </Col>
               </Row>
               <Row>
@@ -195,7 +199,7 @@ export const Home = () => {
                               <div className='valign'>
                                 <div>
                                   <h6 id="bluecolor" className="text-center">Tranforming Lives Through The Word of God</h6>
-                                  <p id="bluecolor" className="text-center" style={{ fontSize: '12px' }}>
+                                  <p id="bluecolor" className="text-center" style={{ fontSize: '13px' }}>
                                     <FontAwesomeIcon icon={faUser} />
                                     &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>Bishop Ade Ajala</span> &nbsp;
 
@@ -203,7 +207,7 @@ export const Home = () => {
                                     <FontAwesomeIcon icon={faClock} />
                                     &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>October 8, 2023</span> &nbsp;
 
-
+                                    <br></br>
                                     <FontAwesomeIcon icon={faLocation} />
                                     &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>Aurora, Denver</span>
 
@@ -270,46 +274,7 @@ export const Home = () => {
 
       {/* Social Media */}
       <div>
-        <br></br>
-        <Container>
-          <Row>
-            <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-            <Col sm={4}>
-              <h4 id="bluecolor" class='text-center'>JOIN US ON SOCAIL MEDIA</h4>
-            </Col>
-            <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-
-            <Col sm={12}>
-              <div>
-                <br></br><br></br>
-                <p className='text-center'>
-                  <ButtonGroup className="me-2" aria-label="First group">
-                    <Link to="#" className='btn btn-danger' id="socialbtn">
-                      <FontAwesomeIcon icon={faFacebook} />
-                    </Link>
-                  </ButtonGroup>
-                  <ButtonGroup className="me-2" aria-label="Second group">
-                    <Link to="#" className='btn btn-danger' id="socialbtn">
-                      <FontAwesomeIcon icon={faInstagram} />
-                    </Link>
-
-                  </ButtonGroup>
-                  <ButtonGroup className="me-2" aria-label="Second group">
-                    <Link to="#" className='btn btn-danger' id="socialbtn">
-                      <FontAwesomeIcon icon={faTwitter} />
-                    </Link>
-                  </ButtonGroup>
-                  <ButtonGroup className="me-2" aria-label="Second group">
-                    <Link to="#" className='btn btn-danger' id="socialbtn">
-                      <FontAwesomeIcon icon={faYoutube} />
-                    </Link>
-                  </ButtonGroup>
-
-                </p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+        <SocialMedia />
       </div>
 
 
@@ -321,8 +286,8 @@ export const Home = () => {
             <Col md={8}>
               <Row>
                 <Col md={4}>
-                  <div>
-                    <Image fluid src="images/img1.jpg" roundedCircle />
+                  <div style={{ width:'130px',margin:'auto'}}>
+                    <Image fluid src="images/sharingfaith.jpeg" roundedCircle style={{ width:'100%' }} />
                   </div>
                 </Col>
                 <Col md={8}>
@@ -402,7 +367,7 @@ export const Home = () => {
             </Col>
             <Col md={5}>
               <div style={{ display: 'flex', justifyContent: 'end', justifyItems: 'end' }}>
-                <Image className='float-end' fluid src="images/img1.jpg" style={{ width: '100%', objectFit: 'cover' }} />
+                <Image className='float-end' fluid src="images/estore.png" style={{ width: '100%', objectFit: 'cover',height:'250px' }} />
               </div>
             </Col>
           </Row>
@@ -416,7 +381,7 @@ export const Home = () => {
           <Row>
             <Col md={5}>
               <div style={{ display: 'flex', justifyContent: 'start', justifyItems: 'start' }}>
-                <Image className='float-start' fluid src="images/img1.jpg" style={{ width: '100%', objectFit: 'cover' }} />
+                <Image className='float-start' fluid src="images/foodbank.jpeg" style={{ width: '100%', objectFit: 'cover', height:'250px'}} />
               </div>
             </Col>
             <Col md={7}>
@@ -435,6 +400,40 @@ export const Home = () => {
           </Row>
         </Container>
       </div>
+
+
+      {/*  APP DOWNLOAD    */}
+      <div>
+        <br></br><br></br>
+        <Container style={{ backgroundColor: '#E1EDF3', padding: '50px' }}>
+          <Row>
+            <Col md={6}>
+                <div id="appimg">
+                  <Image fluid src="images/app.png" thumbnail style={{ width:'90%' }} />
+                </div>
+            </Col>
+            <Col md={6}>
+              <div id="downloaddiv">
+              <h4 id="bluecolor" className='text-center'>DOWNLOAD THE <br></br> ADE AJALA MINISTRIES<br></br> MOBILE APP</h4>
+            
+                <div className='text-center'>
+                  <ButtonGroup className="me-2" aria-label="First group">
+                    <Link to="#" className='btn' id="downloadbtn">
+                      <Image src="images/appstore.png" fluid width="286" height="130" />
+                    </Link>
+                    <Link to="#" className='btn' id="downloadbtn">
+                      <Image src="images/playstore.png" fluid  width="286" height="130"/>
+                    </Link>
+                  </ButtonGroup>
+
+                </div>
+              </div>
+              
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
 
     </div>
   );

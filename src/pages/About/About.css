@@ -1,0 +1,45 @@
+#pastorcard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 0px;
+    width: 300px;
+    background-color: #135592;
+    color: #fff;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#pastorcard #pastorimg {
+    width: 100%;
+    height: 350px;
+}
+
+#aboutvidcol {
+    background-color: #000;
+    height: 500px;
+}
+
+#video {
+    height: 500px;
+}
+
+
+
+@media screen and (max-width: 767px) {
+    #welcome {
+        text-align: center;
+    }
+
+    #pastorcard {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    #aboutvidcol {
+        background-color: transparent;
+        height: 100%;
+    }
+
+    #video {
+        height: 100%;
+    }
+}
