@@ -1,8 +1,10 @@
 
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Container, Col, Row, ButtonGroup, Button } from 'react-bootstrap';
 import "./EventCountDownTimer.css";
+import axios  from 'axios';
+import { serverurl } from "../providers/ServerUrl";
 
 const x = window.matchMedia("(max-width: 767px)");
 
@@ -35,7 +37,6 @@ y.addEventListener("change", function() {
 
 
 
-
 const renderTime = (dimension, time) => {
   return (
     <div className="time-wrapper">
@@ -50,9 +51,26 @@ const getTimeMinutes = (time) => ((time % hourSeconds) / minuteSeconds) | 0;
 const getTimeHours = (time) => ((time % daySeconds) / hourSeconds) | 0;
 const getTimeDays = (time) => (time / daySeconds) | 0;
 
-export function EventCountDownTimer() {
+export function EventCountDownTimer({eventcountdown}) {
+
+//const [eventcountdown, setEventCountDown] = useState([]);
+
+//const fetchEventCountDownData = () => {
+  //return axios.get(serverurl + "/api/nextevent")
+    //  .then((response) => setEventCountDown(response.data['event']));
+//};
+
+//useEffect(() => {
+  //fetchEventCountDownData();
+//},[])
+
+//fetchEventCountDownData();
+
+  const countdown = eventcountdown;
+
+
   const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
-  const endTime = stratTime + 400000; // use UNIX timestamp in seconds
+  const endTime = countdown; // use UNIX timestamp in seconds
 
   const remainingTime = endTime - stratTime;
   const days = Math.ceil(remainingTime / daySeconds);

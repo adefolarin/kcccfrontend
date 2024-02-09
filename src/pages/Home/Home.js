@@ -1,5 +1,7 @@
 // VideoBackground.js
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Col, Row, Card, ButtonToolbar, ButtonGroup, Image, Tab, Nav, InputGroup, Form, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideoCamera, faShareNodes, faDownload, faFileAudio, faUser, faLocation, faClock, faPerson, faArrowLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
@@ -11,11 +13,48 @@ import { Event } from '../../components/Event';
 import { EventCountDownTimer } from '../../components/EventCountDownTimer';
 import { SocialMedia } from '../../components/SocialMedia';
 import { NavLink } from 'react-bootstrap';
+import axios  from 'axios';
+import { serverurl } from '../../providers/ServerUrl';
 
 
 import './Home.css'
 
 export const Home = () => {
+
+  const eventfileurls = serverurl + "/admin/img/events/";
+  const bannervideofileurl = serverurl + "/storage/admin/videos/banners/";
+
+  const [banner, setBanner] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [nextevent, setNextEvent] = useState([]);
+
+  const fetchBannerData = () => {
+    return axios.get(serverurl + "/api/banner")
+    .then((response) => setBanner(response.data));
+  };
+
+  const fetchEventsData = () => {
+    return axios.get(serverurl+"/api/event")
+        .then((response) => setEvents(response.data['events']));
+  };
+
+  const fetchNextEventData = () => {
+    return axios.get(serverurl + "/api/nextevent")
+        .then((response) => setNextEvent(response.data['event']));
+  };
+
+
+  useEffect(() => {
+     fetchBannerData();
+     fetchEventsData();
+     fetchNextEventData();
+  },[])
+
+  const navigate = useNavigate();
+  const goToAbout = () => {
+    navigate('/about');
+  }
+
   return (
     <div>
 
@@ -23,9 +62,16 @@ export const Home = () => {
       <div expand="lg">
         {/* ***** Main Banner Area Start ***** */}
         <section className="section main-banner" id="top" data-section="section1" expand="lg">
-          <video autoPlay muted loop id="bg-video">
-            <source src="videos/aam.mp4" type="video/mp4" />
-          </video>
+          {
+            banner && banner.length > 0 && banner.map((bannerData) => {
+              return <>
+              <video autoPlay muted loop id="bg-video">
+                <source src={bannervideofileurl + bannerData.banner_file} type="video/mp4" />
+              </video>
+                </>
+            })
+          }
+
           <div className="video-overlay header-text">
             <div className="container">
               <div className="row">
@@ -84,24 +130,29 @@ export const Home = () => {
                     <h5 id="bluecolor">UPCOMING EVENT</h5>
                   </Card.Title>
                   <Card.Text>
-                    <h6>Wednesday Night Bible Study</h6>
+                  
+                    
+                    <h5> { nextevent.events_countdown } </h5>
                     <div>
 
                       <Row>
                         <Col md={3}>
                           <p className='minical'>
                             <ButtonGroup vertical>
-                              <Button style={{ backgroundColor: '#d8d8d8', color: '#135592', fontWeight: '800', border: 'none',height:'50px' }}>Dec 12</Button>
-                              <Button style={{ backgroundColor: '#135592', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '5px', height: '' }}>8:00am</Button>
+                              <Button style={{ backgroundColor: '#d8d8d8', color: '#135592', fontWeight: '800', border: 'none',height:'50px' }}>{nextevent.events_startdatemonth}</Button>
+                              <Button style={{ backgroundColor: '#135592', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '5px', height: '' }}>{nextevent.events_starttime}</Button>
                             </ButtonGroup>
                           </p>
                         </Col>
                         <Col md={8}>
-                          <EventCountDownTimer />
+                          <EventCountDownTimer eventcountdown = {nextevent.events_countdown} />
                         </Col>
                       </Row>
 
                     </div>
+                    
+                  
+                  
                   </Card.Text>
                   <Link to="#" class="btn btn-danger" variant="danger" id="btn">Join Event</Link>
                 </Card.Body>
@@ -148,7 +199,7 @@ export const Home = () => {
               </Row>
               <Row>
                 <Col sm={12}>
-                  <Link to="/about" reloadDocument className='btn btn-danger' id='btn'>Read More</Link>
+                  <Link to='/about' reloadDocument className='btn btn-danger' id='btn'>Read More</Link>
                 </Col>
               </Row>
             </Col>
@@ -345,7 +396,7 @@ export const Home = () => {
 
       {/* Event */}
       <div>
-        <Event />
+        <Event event = {events} eventfileurl={eventfileurls} />
       </div>
 
 
