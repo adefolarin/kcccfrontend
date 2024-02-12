@@ -1,19 +1,28 @@
 import { React, useEffect, useState } from 'react'
 import { Card, Image } from 'react-bootstrap';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { Container, Col, Row, Button } from 'react-bootstrap';
+import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { Container, Col, Row, Button, ButtonGroup, ButtonToolbar, Table, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { serverurl } from '../providers/ServerUrl';
 import './EventDetail.css';
 
 export const EventDetails = () => {
 
+    /********************************************
+             GET THE QUERY PARAMS   
+    *********************************************/
     const search = useLocation().search;
     const eventid = new URLSearchParams(search).get('eventid');
 
+    /********************************************
+              GET THE FILE URLS
+    *********************************************/
     const eventfileurls = serverurl + "/admin/img/events/";
     const eventgalleryfileurls = serverurl + "/admin/img/eventgalleries/";
 
+    /**********************************************
+       GET THE EVENT AND EVENT GALLERY FROM THE API
+     **********************************************/
     const [eventdetail, setEventDetail] = useState([]);
 
     const [eventgallery, setEventGallery] = useState([]);
@@ -32,6 +41,49 @@ export const EventDetails = () => {
         fetchEventDetailData();
         fetchEventGalleryData();
     }, [])
+
+
+    /**********************************************
+       POST EVENT REG FORM DATA TO THE API
+     **********************************************/
+
+    const [buttontext, setButtonText] = useState('Register');
+    const [message, setMessageText] = useState();
+    const [successmessage, setSuccessMessage] = useState();
+    const [errormessage, setErrorMessage] = useState();
+
+    const eventregs_event = eventdetail.events_id;
+    const [eventregs_name, setEventRegsName] = useState();
+    const [eventregs_email, setEventRegsEmail] = useState();
+    const [eventregs_pnum, setEventRegsPnum] = useState();
+
+    const navigate = useNavigate();
+
+    const Save = async () => {
+        setButtonText("Processing");
+        if(eventregs_name === "" || eventregs_email === "") {
+            setMessageText("error");
+            setErrorMessage("All Fields are Required");
+            setButtonText("Register");
+        } else {
+        try {
+                      
+            const items = { eventregs_event, eventregs_name, eventregs_email, eventregs_pnum };
+            //console.warn(items);
+            const result = await axios.post(serverurl + "/api/eventreg", items);
+            setMessageText("success");
+            setSuccessMessage(result.data.message);
+            setButtonText("Register");
+            console.warn(result);
+        
+        } catch (error) {
+            setMessageText("error");
+            setErrorMessage("!!Sorry, Your Registration Could Not Be Processed");
+            setButtonText("Register");
+            console.log(error);
+        }
+      }
+    };
 
 
     return (
@@ -95,29 +147,142 @@ export const EventDetails = () => {
                     <Row>
                         <Col md={6}>
                             <div id="eventgallery">
-                                <h4 id="bluecolor">Event Gallery</h4>
-                                <p>
+                                <h4 id="bluecolor" className='eventgallerycaption'>Event Gallery</h4>
+                                <p id="eventgallerytext">
                                     Explore the gallery from previous events
                                 </p>
                                 <Row>
-                                {
-                                    eventgallery && eventgallery.length > 0 && eventgallery.map((eventGalleryData, index) => {
-                                        return <>
-                                            <Col md={6}>
-                                        
-                                                <Card id="deptcard" className="eventgallerylimg">
-                                                    <Card.Img id="eventgalleryimg" variant="top" src={eventgalleryfileurls + eventGalleryData.eventgalleries_file} thumbnail />
-                                                </Card>
-                                            </Col>
-                                        </>
-                                    })
-                                }
+                                    {
+
+                                        eventgallery.length > 0 && eventgallery.map((eventGalleryData, index) => {
+                                            return <>
+                                                {eventGalleryData.eventgalleries_file !== '' ?
+                                                    <Col md={6}>
+
+                                                        <Card id="deptcard" className="eventgallerylimg">
+
+                                                            <Card.Img id="eventgalleryimg" variant="top" src={eventgalleryfileurls + eventGalleryData.eventgalleries_file} thumbnail />
+
+                                                        </Card>
+                                                    </Col> :
+
+                                                    <Col md={12}>
+                                                        <p id="eventgallerytext">{'No Gallery To Show'}</p>
+                                                    </Col>
+                                                }
+                                            </>
+                                        })
+
+                                    }
                                 </Row>
 
                             </div>
                         </Col>
 
-                        <Col md={6}></Col>
+                        <Col md={6}>
+                            <div>
+                                <Card id="deptcard">
+                                    <Card.Header style={{ backgroundColor: '#135592', color: '#fff', fontSize: '20px', textAlign: 'center' }}>
+                                        Event Details
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <Table striped bordered hover size="xs">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Start Date</th><td>{eventdetail.events_startfulldate}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>End Date</th><td>{eventdetail.events_endfulldate}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Time</th><td>{eventdetail.events_starttime}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Organizer</th><td>{eventdetail.events_organizer}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Venue</th><td>{eventdetail.events_venue}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Address</th><td>{eventdetail.events_address}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Contact</th><td>+019450000</td>
+                                                </tr>
+                                            </tbody>
+                                        </Table>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card id="deptcard">
+                                    <Card.Header style={{ backgroundColor: '#135592', color: '#fff', fontSize: '20px', textAlign: 'center' }}>
+                                        Event Registration
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <Form>
+
+                                            <Form.Group className="mb-3" controlId="">
+                                                <Form.Control type="text" size="lg" placeholder="Full Name" style={{ fontSize: '16px', padding: '15px' }}
+                                                    value={eventregs_name} onChange={(e) => setEventRegsName(e.target.value)} />
+                                            </Form.Group>
+                                            <Form.Group className="mb-3" controlId="">
+                                                <Form.Control type="text" size="lg" placeholder="Email" style={{ fontSize: '16px', padding: '15px' }}
+                                                    value={eventregs_email} onChange={(e) => setEventRegsEmail(e.target.value)} />
+                                            </Form.Group>
+                                            <Form.Group className="mb-3" controlId="">
+                                                <Form.Control type="text" size="lg" placeholder="Pnone Number" style={{ fontSize: '16px', padding: '15px' }}
+                                                    value={eventregs_pnum} onChange={(e) => setEventRegsPnum(e.target.value)} />
+                                            </Form.Group>
+                                        </Form>
+                                        <div>
+                                            {
+                                            message === 'success' ?
+                                            <div className='alert alert-success alert-sm'>
+                                                {successmessage}
+                                            </div>:
+                                            ''
+                                            }
+
+                                           {
+                                            message === 'error' ?
+                                            <div className='alert alert-danger alert-sm'>
+                                                {errormessage}
+                                            </div>:
+                                            ''
+                                            }
+                                        </div>
+                                        <ButtonToolbar
+                                            className="justify-content-between"
+                                            aria-label="Toolbar with Button groups"
+                                        >
+
+                                            <ButtonGroup className="me-4" aria-label="First group">
+                                               {
+                                                buttontext === "Processing" ?
+                                                <Button class="btn btn-danger" style={{ backgroundColor: '#249D59', color: '#fff', borderRadius: '0', border: 'none', fontWeight: 'bold' }} onClick={Save}>
+                                                    {buttontext}
+                                                </Button>:
+                                                ''
+                                                }
+
+                                                {
+                                                buttontext === "Register" ?
+                                                <Button class="btn btn-danger" style={{ backgroundColor: 'red', color: '#fff', borderRadius: '0', border: 'none', fontWeight: 'bold' }} onClick={Save}>
+                                                    {buttontext}
+                                                </Button>:
+                                                ''
+                                                }
+                                            </ButtonGroup>
+                                            <ButtonGroup className="me-2" aria-label="First group">
+                                                <Button class="btn btn-danger" style={{ backgroundColor: '#135592', color: '#fff', borderRadius: '0', border: 'none', fontWeight: 'bold' }}>
+                                                    Copy Link
+                                                </Button>
+                                            </ButtonGroup>
+                                        </ButtonToolbar>
+                                    </Card.Body>
+                                </Card>
+                            </div>
+                        </Col>
                     </Row>
                 </Container>
             </div>

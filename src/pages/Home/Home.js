@@ -132,7 +132,7 @@ export const Home = () => {
                   <Card.Text>
                   
                     
-                    <h5> { nextevent.events_countdown } </h5>
+                    <h5> { nextevent.events_title } </h5>
                     <div>
 
                       <Row>

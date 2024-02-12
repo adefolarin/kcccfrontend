@@ -114,7 +114,7 @@ Sub header
 }
 
 .sub-header {
-  background-color: #1f272b;
+  background-color: #135592;
   position: fixed;
   width: 100%;
   z-index: 1111;
@@ -213,6 +213,11 @@ Sub header
   .sub-header {
     z-index: 1;
     padding: 8px;
+ 
+  }
+
+  #sub-header {
+    background-color: #135592;
   }
 
   #subheadernews {

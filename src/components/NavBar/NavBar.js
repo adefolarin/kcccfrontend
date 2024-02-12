@@ -27,7 +27,7 @@ export function NavBar() {
   return (
 
     <>
-      <div className="sub-header">
+      <div className="sub-header" id="sub-header">
         <Container>
           <Row>
             <Col sm={8}>
@@ -94,7 +94,7 @@ export function NavBar() {
               </Nav>
               <Nav>
                 <Nav.Link id="givenavheadlink">
-                  <Link to="/give" className='btn btn-danger' style={{ borderRadius: '0', backgroundColor: 'red', fontWeight: '700', fontSize: '20px' }} id="givenavlink">Give</Link>
+                  <Link to="/give" className='btn btn-danger' style={{ borderRadius: '0', backgroundColor: 'red', fontWeight: '700', fontSize: '20px' }} id="givenavlink">GIVE</Link>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
