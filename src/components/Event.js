@@ -35,12 +35,16 @@ export const Event = ({ event, eventfileurl }) => {
                                                     </p>
                                                     <h6 id="bluecolor">{eventData.events_title}</h6>
                                                 </Card.Title>
-                                                <Card.Text style={{ display: 'none' }}>
-                                                    <p><Button className="btn btn-danger btn-sm" style={{ backgroundColor: 'red', border: 'none', borderRadius: '0', fontWeight: '600' }}>Ongoing</Button></p>
-                                                </Card.Text>
-                                                <a href={"/event-details?eventid=" + eventData.events_id}
+                                                {
+                                                eventData.events_status ?
+                                                <Card.Text style={{ display: 'block' }}>
+                                                    <p><Button className="" style={{ backgroundColor: 'red', border: 'none', borderRadius: '0', fontWeight: '600' }}>Ongoing</Button></p>
+                                                </Card.Text> :
+                                                ''
+                                                }
+                                                <Link to={"/event-details?eventid=" + eventData.events_id}
                                                     variant="danger" className='btn btn-danger btn-sm'
-                                                    style={{ textDecoration: 'none', color: '#135592', border: '1px solid red', borderRadius: '0', backgroundColor: 'transparent' }}>Event Details</a>
+                                                    style={{ textDecoration: 'none', color: '#135592', border: '1px solid red', borderRadius: '0', backgroundColor: 'transparent' }} reloadDocument>Event Details</Link>
                                             </Card.Body>
                                         </Card>
                                     </Col> :
