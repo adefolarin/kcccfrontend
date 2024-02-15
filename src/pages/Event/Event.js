@@ -1,25 +1,62 @@
-import React from 'react'
-import { Container, Col, Row, Card, ButtonToolbar, ButtonGroup, Image, Tab, Nav, InputGroup, Form, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideoCamera, faShareNodes, faDownload, faFileAudio, faUser, faLocation, faClock, faPerson, faArrowLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { Link } from 'react-router-dom';
-import { serverurl } from '../providers/ServerUrl';
+import { React, useEffect, useState } from 'react'
+import { Card, Image } from 'react-bootstrap';
+import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { Container, Col, Row, Button, ButtonGroup, ButtonToolbar, Table, Form } from 'react-bootstrap';
+import axios from 'axios';
+import { serverurl } from '../../providers/ServerUrl';
+import '../EventDetail.css';
 
-export const Event = ({ event, eventfileurl }) => {
+export const Event = () => {
+
+  
+    /********************************************
+              GET THE FILE URLS
+    *********************************************/
+    const eventfileurl = serverurl + "/admin/img/events/";
+
+    /**********************************************
+       GET THE EVENT AND EVENT GALLERY FROM THE API
+     **********************************************/
+
+       const [events, setEvents] = useState([]);
+     
+   
+       const fetchEventsData = () => {
+         return axios.get(serverurl+"/api/eventall")
+             .then((response) => setEvents(response.data['events']));
+       };
+     
+       useEffect(() => {
+          fetchEventsData();
+       },[])
+
+
+
     return (
         <div>
+
+            <div>
+                <br></br><br></br>
+                <div style={{ position: 'relative' }}>
+                    <Image fluid src="images/img3.jpg" alt="Card image" id="bannerimg" />
+                    <div id="banneroverlay">
+                        <div id="bannerid" className='text-center'>
+                            <p id="navhistory">
+                                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                                <Link to="#" className='text-white' id="currentlink">Events</Link>
+                            </p>
+                            <h4>Events</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <br></br><br></br>
             <Container>
                 <Row>
-                    <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-                    <Col md={4}>
-                        <h4 id="bluecolor" class='text-center'>Events</h4>
-                    </Col>
-                    <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
                     <br></br><br></br><br></br>
                     {
-                        event && event.length > 0 && event.map((eventData) => {
+                        events && events.length > 0 && events.map((eventData) => {
                             return <>
                                 {eventData.events_title !== '' || eventData.events_enddate > eventData.datenow ?
                                     <Col md={4}>
@@ -64,18 +101,12 @@ export const Event = ({ event, eventfileurl }) => {
                 </Row>
 
 
-                <br></br><br></br>
-                <Row>
-                    <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-                    <Col md={4}>
-                        <p class="text-center">
-                            <Link to="/events" class='text-center' id='bannerbtn' className='btn btn-danger'>More Events</Link>
-                        </p>
-                    </Col>
-                    <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-                </Row>
             </Container>
-        </div>
+
+            <br></br><br></br>
+
+
+
+        </div >
     )
 }
-

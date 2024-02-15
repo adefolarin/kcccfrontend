@@ -22,10 +22,12 @@ import './Home.css'
 export const Home = () => {
 
   const eventfileurls = serverurl + "/admin/img/events/";
+  const deptfileurls = serverurl + "/admin/img/departments/";
   const bannervideofileurl = serverurl + "/storage/admin/videos/banners/";
 
   const [banner, setBanner] = useState([]);
   const [events, setEvents] = useState([]);
+  const [depts, setDepts] = useState([]);
   const [nextevent, setNextEvent] = useState([]);
 
   const fetchBannerData = () => {
@@ -43,11 +45,17 @@ export const Home = () => {
         .then((response) => setNextEvent(response.data['event']));
   };
 
+  const fetchDeptsData = () => {
+    return axios.get(serverurl+"/api/department")
+        .then((response) => setDepts(response.data['departments']));
+  };
+
 
   useEffect(() => {
      fetchBannerData();
      fetchEventsData();
      fetchNextEventData();
+     fetchDeptsData();
   },[])
 
   const navigate = useNavigate();
@@ -368,7 +376,7 @@ export const Home = () => {
 
       {/* Department */}
       <div>
-        <Departments />
+        <Departments depts={depts} />
       </div>
 
 

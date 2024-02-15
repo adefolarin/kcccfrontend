@@ -1,23 +1,57 @@
-import React from 'react'
-import { Container, Col, Row, Card, ButtonToolbar, ButtonGroup, Image, Tab, Nav, InputGroup, Form, Button } from 'react-bootstrap';
+import { React, useEffect, useState } from 'react'
+import { Card, Image } from 'react-bootstrap';
+import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { Container, Col, Row, Button, ButtonGroup, ButtonToolbar, Table, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideoCamera, faShareNodes, faDownload, faFileAudio, faUser, faLocation, faClock, faPerson, faArrowLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { serverurl } from '../../providers/ServerUrl';
+import '../EventDetail.css';
 
-export const Departments = ({ depts }) => {
+export const Department = () => {
+
+  
+    /**********************************************
+       GET THE DEPARTMENT FROM THE API
+     **********************************************/
+
+       const [depts, setDepts] = useState([]);
+     
+   
+       const fetchDeptsData = () => {
+         return axios.get(serverurl+"/api/departmentall")
+             .then((response) => setDepts(response.data['departments']));
+       };
+     
+       useEffect(() => {
+          fetchDeptsData();
+       },[])
+
+
+
     return (
         <div>
+
             <div>
                 <br></br><br></br>
-                <Container>
-                    <Row>
-                        <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
-                        <Col sm={4}>
-                            <h4 id="bluecolor" class='text-center'>Our Departments</h4>
-                        </Col>
-                        <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
+                <div style={{ position: 'relative' }}>
+                    <Image fluid src="images/img3.jpg" alt="Card image" id="bannerimg" />
+                    <div id="banneroverlay">
+                        <div id="bannerid" className='text-center'>
+                            <p id="navhistory">
+                                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                                <Link to="#" className='text-white' id="currentlink">Departments</Link>
+                            </p>
+                            <h4>Departments</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <br></br><br></br>
+            <Container>
+                    <Row>
                         <Col md={12}>
                             <div>
                                 <br></br>
@@ -64,8 +98,12 @@ export const Departments = ({ depts }) => {
                             </div>
                         </Col>
                     </Row>
-                </Container>
-            </div>
-        </div>
+            </Container>
+
+            <br></br><br></br>
+
+
+
+        </div >
     )
 }
