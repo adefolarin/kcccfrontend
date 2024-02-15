@@ -35,6 +35,7 @@ export function NavBar() {
 
   useEffect(() => {
     fetchNewsData();
+
  },[])
 
   return (
@@ -46,16 +47,14 @@ export function NavBar() {
             <Col sm={8}>
               <Carousel>
               { news && news.length > 0 && news.map((newsData) => {
-                return <>
-                
-                <Carousel.Item>
+                return <Carousel.Item>
                   <p style={{ color: '#fff', margin: '0px' }} id="subheadernews">{ newsData.news_title }</p>
-                </Carousel.Item>:
-                
-                 </>
+                </Carousel.Item>
                })
               }
               </Carousel>
+
+
 
             </Col>
 

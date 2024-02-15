@@ -15,6 +15,7 @@ import { SocialMedia } from '../../components/SocialMedia';
 import { NavLink } from 'react-bootstrap';
 import axios  from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
+import { Podcasts } from '../../components/Podcasts';
 
 
 import './Home.css'
@@ -62,6 +63,22 @@ export const Home = () => {
   const goToAbout = () => {
     navigate('/about');
   }
+
+  /**********************************************
+   GET THE PODCAST FROM THE API
+  **********************************************/
+
+    const [podcasts, setPodcast] = useState([]);
+
+
+    const fetchPodcastData = () => {
+        return axios.get(serverurl + "/api/podcast")
+            .then((response) => setPodcast(response.data['podcasts']));
+    };
+
+    useEffect(() => {
+        fetchPodcastData();
+    }, [])
 
   return (
     <div>
@@ -310,13 +327,15 @@ export const Home = () => {
 
                   </Tab.Pane>
 
-                  <Tab.Pane eventKey="podcast">PODCASTS</Tab.Pane>
-                  <Tab.Pane eventKey="archived">ARCHIVES MESSAGES</Tab.Pane>
+                  <Tab.Pane eventKey="podcast">
+                    {/*<Podcasts podcasts={podcasts}/>*/}
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="archived">ARCHIVED MESSAGES</Tab.Pane>
                 </Tab.Content>
               </Tab.Container>
 
               <br></br><br></br>
-              <Row>
+              <Row style={{ display:'none' }}>
                 <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
                 <Col sm={4}>
                   <p class="text-center">
