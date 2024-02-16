@@ -14,6 +14,11 @@ import { NewsDetails } from './pages/NewsDetails';
 import { Test } from './pages/Test';
 import { Resources } from './pages/Resources/Resources';
 import { Podcast } from './pages/Podcast/Podcast';
+import { Sermon } from './pages/Sermon/Sermon';
+import { Contact } from './pages/Contact/Contact';
+import { SignUp } from './pages/SignUp/SignUp';
+import { FoodBank } from './pages/FoodBank/FoodBank';
+
 
 //import logo from './logo.svg';
 //import './App.css';
@@ -34,6 +39,10 @@ function App() {
               <Route path = "/news" element={<News/>}></Route>
               <Route path = "/resources" element={<Resources/>}></Route>
               <Route path = "/podcasts" element={<Podcast/>}></Route>
+              <Route path = "/sermons" element={<Sermon/>}></Route>
+              <Route path = "/contact" element={<Contact/>}></Route>
+              <Route path = "/signup" element={<SignUp/>}></Route>
+              <Route path = "/foodbank" element={<FoodBank/>}></Route>
               <Route path = "/test" element={<Test/>}></Route>
           </Routes>
           <Footer/>

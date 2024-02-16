@@ -14,7 +14,7 @@ export const SocialMedia = () => {
                     <Row>
                         <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
                         <Col sm={4}>
-                            <h4 id="bluecolor" class='text-center socialheader'>JOIN US ON SOCAIL MEDIA</h4>
+                            <h4 id="bluecolor" class='text-center socialheader'>JOIN US ON SOCIAL MEDIA</h4>
                         </Col>
                         <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
 

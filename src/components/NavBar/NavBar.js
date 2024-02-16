@@ -60,6 +60,9 @@ export function NavBar() {
 
             <Col sm={4}>
               <p style={{ margin: '0px' }} id="subheaderlink">
+               <ButtonGroup className="me-2" aria-label="First group">
+                  <Link to="/signup" className='btn btn-danger' id="subheaderbtn" reloadDocument>Sign UP</Link>
+                </ButtonGroup>
                 <ButtonGroup className="me-2" aria-label="First group">
                   <Link to="/news" className='btn btn-danger' id="subheaderbtn" reloadDocument>News</Link>
                 </ButtonGroup>
@@ -87,7 +90,7 @@ export function NavBar() {
               <Nav className="me-auto" id="me-auto">
                 <Nav.Link href="/" className='navLink' id="navLink">Home</Nav.Link>
                 <Nav.Link href="/about" className='navLink' id="navLink">About</Nav.Link>
-                <Nav.Link href="/sermon" className='navLink' id="navLink">Sermons</Nav.Link>
+                <Nav.Link href="/sermons" className='navLink' id="navLink">Sermons</Nav.Link>
                 <Nav.Link href="/departments" className='navLink' id="navLink">Departments</Nav.Link>
                 <Nav.Link href="/events" className='navLink' id="navLink">Events</Nav.Link>
                 <Nav.Link href="/livestream" className='navLink' id="navLink">Livestream</Nav.Link>

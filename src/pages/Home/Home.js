@@ -2,9 +2,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Col, Row, Card, ButtonToolbar, ButtonGroup, Image, Tab, Nav, InputGroup, Form, Button } from 'react-bootstrap';
+import { Container, Col, Row, Card, ButtonToolbar, ButtonGroup, Image, Tab, Nav, InputGroup, Form, Button, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideoCamera, faShareNodes, faDownload, faFileAudio, faUser, faLocation, faClock, faPerson, faArrowLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faVideoCamera, faShareNodes, faDownload, faFileAudio, faUser, faLocation, faClock, faPerson, faArrowLeft, faAngleRight, faMousePointer } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom';
 import { SearchFormGroup } from '../../components/Forms/SearchFormGroup';
@@ -15,7 +15,7 @@ import { SocialMedia } from '../../components/SocialMedia';
 import { NavLink } from 'react-bootstrap';
 import axios  from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
-import { Podcasts } from '../../components/Podcasts';
+//import { Podcasts } from '../../components/Podcasts';
 
 
 import './Home.css'
@@ -30,6 +30,7 @@ export const Home = () => {
   const [events, setEvents] = useState([]);
   const [depts, setDepts] = useState([]);
   const [nextevent, setNextEvent] = useState([]);
+  const [sermons, setSermons] = useState([]);
 
   const fetchBannerData = () => {
     return axios.get(serverurl + "/api/banner")
@@ -51,13 +52,21 @@ export const Home = () => {
         .then((response) => setDepts(response.data['departments']));
   };
 
+  const fetchSermonsData = () => {
+    return axios.get(serverurl+"/api/sermon")
+        .then((response) => setSermons(response.data['sermons']));
+  };
+
 
   useEffect(() => {
-     fetchBannerData();
-     fetchEventsData();
-     fetchNextEventData();
-     fetchDeptsData();
-  },[])
+    fetchBannerData();
+    fetchEventsData();
+    fetchNextEventData();
+    fetchDeptsData();
+    fetchSermonsData();
+ },[])
+
+
 
   const navigate = useNavigate();
   const goToAbout = () => {
@@ -68,7 +77,7 @@ export const Home = () => {
    GET THE PODCAST FROM THE API
   **********************************************/
 
-    const [podcasts, setPodcast] = useState([]);
+    /*const [podcasts, setPodcast] = useState([]);
 
 
     const fetchPodcastData = () => {
@@ -78,7 +87,7 @@ export const Home = () => {
 
     useEffect(() => {
         fetchPodcastData();
-    }, [])
+    }, [])*/
 
   return (
     <div>
@@ -252,7 +261,7 @@ export const Home = () => {
                   <Nav.Item className='tabitems'>
                     <Nav.Link eventKey="podcast" className='tablink' style={{ color: '#fff' }}>PODCASTS</Nav.Link>
                   </Nav.Item>
-                  <Nav.Item className='tabitems'>
+                  <Nav.Item className='tabitems' style={{ display:'none' }}>
                     <Nav.Link eventKey="archived" className='tablink' style={{ color: '#fff' }}>ARCHIVED MESSAGES</Nav.Link>
                   </Nav.Item>
                 </Nav>
@@ -261,32 +270,44 @@ export const Home = () => {
                     <SearchFormGroup />
 
                     <Container>
-                      <Row>
+
+                    {
+              
+                       sermons && sermons.length > 0 && sermons.map((sermonData) => {
+                      return <Row>
                         <div
                           style={{ borderRadius: '0px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '20px' }}>
                           <Row>
                             <Col md={4}>
                               <div className=''>
-                                <video controls style={{ width: '100%', height: '200px', margin: 'auto' }}>
-                                  <source src="videos/course.mp4" type="video/mp4" />
-                                </video>
+                                <iframe style={{ width: '100%', height: '150px', margin: 'auto' }}  
+                                src={sermonData.sermons_file}
+                                frameborder="0" 
+                                allow="accelerometer; 
+                                autoplay; 
+                                clipboard-write; 
+                                encrypted-media; 
+                                gyroscope; 
+                                picture-in-picture; 
+                                web-share" allowfullscreen>
+                                </iframe>
                               </div>
                             </Col>
                             <Col md={4}>
                               <div className='valign'>
                                 <div>
-                                  <h6 id="bluecolor" className="text-center">Tranforming Lives Through The Word of God</h6>
+                                  <h6 id="bluecolor" className="text-center">{sermonData.sermons_title}</h6>
                                   <p id="bluecolor" className="text-center" style={{ fontSize: '13px' }}>
                                     <FontAwesomeIcon icon={faUser} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>Bishop Ade Ajala</span> &nbsp;
+                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_preacher}</span> &nbsp;
 
 
                                     <FontAwesomeIcon icon={faClock} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>October 8, 2023</span> &nbsp;
+                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_date}</span> &nbsp;
 
                                     <br></br>
                                     <FontAwesomeIcon icon={faLocation} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>Aurora, Denver</span>
+                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_location}</span>
 
                                   </p>
                                 </div>
@@ -322,6 +343,8 @@ export const Home = () => {
                           </Row>
                         </div>
                       </Row>
+                       })
+                     }
                     </Container>
 
 
@@ -335,7 +358,7 @@ export const Home = () => {
               </Tab.Container>
 
               <br></br><br></br>
-              <Row style={{ display:'none' }}>
+              <Row style={{ display:'' }}>
                 <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
                 <Col sm={4}>
                   <p class="text-center">
@@ -470,7 +493,7 @@ export const Home = () => {
                   Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
                 </p>
                 <p className='text-right'>
-                  <Link to="#" className='btn btn-danger' id="homegivebtn">
+                  <Link to="/foodbank" reloadDocument className='btn btn-danger' id="homegivebtn">
                     Learn More
                   </Link>
                 </p>
