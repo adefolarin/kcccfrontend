@@ -163,31 +163,33 @@ export const Home = () => {
                   <Card.Title>
                     <h5 id="bluecolor">UPCOMING EVENT</h5>
                   </Card.Title>
-                  <Card.Text>
-                  
-                    
-                    <h5> { nextevent.events_title } </h5>
+                  {
+                    nextevent && nextevent.map((nextEventData,index) => {
+                    return<>
+                  <Card.Text>        
+                    <h5> { nextEventData.events_title } </h5>
                     <div>
-
                       <Row>
                         <Col md={3}>
                           <p className='minical'>
                             <ButtonGroup vertical>
-                              <Button style={{ backgroundColor: '#d8d8d8', color: '#135592', fontWeight: '800', border: 'none',height:'50px' }}>{nextevent.events_startdatemonth}</Button>
-                              <Button style={{ backgroundColor: '#135592', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '5px', height: '' }}>{nextevent.events_starttime}</Button>
+                              <Button style={{ backgroundColor: '#d8d8d8', color: '#135592', fontWeight: '800', border: 'none',height:'50px' }}>{nextEventData.events_startdatemonth}</Button>
+                              <Button style={{ backgroundColor: '#135592', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '5px', height: '' }}>{nextEventData.events_starttime}</Button>
                             </ButtonGroup>
                           </p>
                         </Col>
                         <Col md={8}>
-                          <EventCountDownTimer eventcountdown = {nextevent.events_countdown} />
+                         
+                             <EventCountDownTimer eventcountdown = {nextEventData.events_countdown} />
+                          
                         </Col>
                       </Row>
-
-                    </div>
-                    
-                  
-                  
+                    </div>               
                   </Card.Text>
+                      </>
+                     })
+                    }
+
                   <Link to="#" class="btn btn-danger" variant="danger" id="btn">Join Event</Link>
                 </Card.Body>
               </Card>

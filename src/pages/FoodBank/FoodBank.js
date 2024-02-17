@@ -48,7 +48,7 @@ export const FoodBank = () => {
     };
 
     const fetchFoodBankGalleryData = () => {
-        return axios.get(serverurl + "/api/foodbank")
+       return axios.get(serverurl + "/api/foodbank")
             .then((response) => setFoodBankGallery(response.data['foodbankgallery']));
     };
 
@@ -59,12 +59,13 @@ export const FoodBank = () => {
 
 
     useEffect(() => {
-        fetchFoodBankData();
+
         fetchFoodBankData2();
+        fetchFoodBankData();
         fetchFoodBankGalleryData();
         fetchVolFormData();
 
-        //alert(foodbanks.foodbanks_videofile);
+        //alert(foodbanks2.foodbanks_videofile);
     }, [])
 
 
@@ -82,16 +83,33 @@ export const FoodBank = () => {
     const [volunteers_name, setVolName] = useState();
     const [volunteers_email, setVolEmail] = useState();
     const [volunteers_pnum, setVolPnum] = useState();
-    const [volunteers_time, setVolTime] = useState([]);
+    const [checkedvalue, setCheckedValue] = useState("false");
 
-    const [volunteerstime, setVolsTime] = useState();
+    const [selecteditem, setSelectedItem] = useState([]);
 
-  
-    const isChecked = volunteers_time.checked;
+   function checkboxHandler(e) {
+      const isSelected = e.target.checked;
+      const value = e.target.value;
+    
+        if(isSelected) {
+            selecteditem.push(value);
+            if(selecteditem.length > 0) {
+               setCheckedValue("true");
+            }
+        } else {
+            selecteditem.splice(value, 1);
+            if(selecteditem.length <= 0) {
+                setCheckedValue("false");
+            }
+        } 
 
-    if (isChecked) {
-       setVolsTime(volunteerstime);
-    }
+   } 
+
+   
+
+
+
+
 
     const volunteers_type = "Food Bank";
 
@@ -99,14 +117,14 @@ export const FoodBank = () => {
 
     const Save = async () => {
         setButtonText("Processing");
-        if(volunteers_type === "" || volunteers_name === "" || volunteers_email === "" || volunteers_pnum === "" || volunteers_time === "" ) {
+        if(volunteers_type === "" || volunteers_name === "" || volunteers_email === "" || volunteers_pnum === "" || checkedvalue === "false" ) {
             setMessageText("error");
             setErrorMessage("All Fields are Required");
             setButtonText("Send");
         } else {
         try {
                       
-            const items = { volunteers_type, volunteers_name, volunteers_email, volunteers_time, volunteers_time };
+            const items = { volunteers_type, volunteers_name, volunteers_email, volunteers_pnum, selecteditem };
             //console.warn(items);
             const result = await axios.post(serverurl + "/api/volunteer", items);
             setMessageText("success");
@@ -149,7 +167,14 @@ export const FoodBank = () => {
                     <Row>
                         <Col md={12}>
                             <Card id="deptcard" className="eventdetailimg">
-                                <Card.Img id="foodbankimg" variant="top" src={foodbankimgfileurls + foodbanks.foodbanks_imagefile} thumbnail />
+                                {
+                                foodbanks && foodbanks.map((foodBankData,index) => {
+                                return <>
+                                <Card.Img id="foodbankimg" variant="top" src={foodbankimgfileurls + foodBankData.foodbanks_imagefile} thumbnail />
+                                 </>
+                              
+                                })
+                                }
                             </Card>
                         </Col>
                     </Row>
@@ -165,9 +190,15 @@ export const FoodBank = () => {
               <Row>
                 <Col md={12} id="aboutvidcol">
                   <div className='' id="video">
-                      <video controls style={{ width: '100%', height: '100%', margin: 'auto' }}>
-                      <source src={ foodbankvideofileurls + foodbanks2.foodbanks_videofile } type="video/mp4" />
-                    </video>
+                    {
+                    foodbanks && foodbanks.map((foodBankData,index) => {
+                    return <>
+                     <video controls style={{ width: '100%', height: '100%', margin: 'auto' }}>
+                        <source src={ foodbankvideofileurls + foodBankData.foodbanks_videofile } type="video/mp4" />
+                      </video>
+                      </>
+                      })
+                     }
                     
                   </div>
                 </Col>
@@ -178,7 +209,7 @@ export const FoodBank = () => {
       </div>
 
 
-            <br></br>
+            <br></br><br></br><br></br>
             <div>
                 <Container>
                     <Row>
@@ -239,22 +270,27 @@ export const FoodBank = () => {
                                             <label>Time you will be available(tick all that apply)</label>
                                             <br></br><br></br>
                                             {
-                                            volforms.length > 0 && volforms.map((volFormData) => {
-                                            return <>
-                                                <Form.Check
+                                            volforms.length > 0 && volforms.map((volFormData,index) => {
+                                            return <Form.Check
+                                                    
                                                     inline
                                                     label={volFormData.volforms_time}
                                                     type='checkbox'
+                                                    
                                                     value={volFormData.volforms_time}
                                                     name="volunteers_time"
                                                     
-                                                    onChange={(e) => setVolTime(e.target)}
+                                                    onChange={checkboxHandler}
                                                   
                                                 />
-                                                 </>
+                                                
                                              })
                                             }
-                                            {volunteerstime}
+
+                                            <Form.Control
+                                              value={checkedvalue} style={{ display:'none' }}
+                                            />
+                                          
                                             </Form.Group>
                                             
                                            

@@ -17,7 +17,8 @@ import { Podcast } from './pages/Podcast/Podcast';
 import { Sermon } from './pages/Sermon/Sermon';
 import { Contact } from './pages/Contact/Contact';
 import { SignUp } from './pages/SignUp/SignUp';
-import { FoodBank } from './pages/FoodBank/FoodBank';
+import { LiveStream } from './pages/LiveStream/LiveStream';
+import { FoodBank } from './pages/FoodBank/FoodBank'
 
 
 //import logo from './logo.svg';
@@ -43,6 +44,7 @@ function App() {
               <Route path = "/contact" element={<Contact/>}></Route>
               <Route path = "/signup" element={<SignUp/>}></Route>
               <Route path = "/foodbank" element={<FoodBank/>}></Route>
+              <Route path = "/livestream" element={<LiveStream/>}></Route>
               <Route path = "/test" element={<Test/>}></Route>
           </Routes>
           <Footer/>
