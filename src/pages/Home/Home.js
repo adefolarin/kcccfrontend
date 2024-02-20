@@ -269,7 +269,7 @@ export const Home = () => {
                 </Nav>
                 <Tab.Content style={{ marginTop: '20px' }}>
                   <Tab.Pane eventKey="sermon">
-                    <SearchFormGroup />
+                   {/*} <SearchFormGroup />*/}
 
                     <Container>
 

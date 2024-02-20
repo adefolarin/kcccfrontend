@@ -8,6 +8,8 @@ import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free
 import axios from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
 import { SearchFormGroup } from '../../components/Forms/SearchFormGroup';
+import { apiKey } from '../../providers/ServerUrl';
+import { servicechannelid } from '../../providers/ServerUrl';
 
 
 
@@ -26,13 +28,21 @@ export const LiveStream = () => {
 
 
     const fetchSermonData = () => {
-        return axios.get(serverurl + "/api/sermonall")
-            .then((response) => setSermons(response.data['sermons']));
+        return axios.get('https://www.googleapis.com/youtube/v3/search?key=' 
+        + apiKey + '&channelId=' + servicechannelid + '&part=snippet,id&maxResults=50&order=date')
+            .then((response) => setSermons(response.data['items']));
+
     };
 
     useEffect(() => {
         fetchSermonData();
+
+        console.log(sermons);
     }, [])
+
+    const OpenVideo = () =>  {
+
+    }
 
 
 
@@ -47,9 +57,9 @@ export const LiveStream = () => {
                         <div id="bannerid" className='text-center'>
                             <p id="navhistory">
                                 <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
-                                <Link to="#" className='text-white' id="currentlink">Sermons</Link>
+                                <Link to="#" className='text-white' id="currentlink">Live Service</Link>
                             </p>
-                            <h4>Sermons</h4>
+                            <h4>Live Service</h4>
                         </div>
                     </div>
                 </div>
@@ -60,7 +70,17 @@ export const LiveStream = () => {
                     <Row>
                         <Col md={12}>
                             <Card id="deptcard" className="eventdetailimg">
-                                <Card.Img id="" variant="top" src="images/sermonbanner.png" thumbnail />
+                            <iframe style={{ width: '100%', height: '500px', margin: 'auto' }}
+                                    src="https://www.youtube.com/embed/live_stream?channel=UC_8_w-pM9yJXpqjMJguouLw"
+                                    frameborder="0"
+                                    allow="accelerometer; 
+                                    autoplay; 
+                                    clipboard-write; 
+                                    encrypted-media; 
+                                    gyroscope; 
+                                    picture-in-picture; 
+                                    web-share" allowfullscreen>
+                               </iframe>
                             </Card>
                         </Col>
                     </Row>
@@ -84,7 +104,7 @@ export const LiveStream = () => {
             <br></br><br></br><br></br>
 
             <Col sm={12}>
-                    <SearchFormGroup />
+                    {/*<SearchFormGroup />*/}
 
                     <Container>
 
@@ -97,34 +117,27 @@ export const LiveStream = () => {
                           <Row>
                             <Col md={4}>
                               <div className=''>
-                                <iframe style={{ width: '100%', height: '150px', margin: 'auto' }}  
-                                src={sermonData.sermons_file}
-                                frameborder="0" 
-                                allow="accelerometer; 
-                                autoplay; 
-                                clipboard-write; 
-                                encrypted-media; 
-                                gyroscope; 
-                                picture-in-picture; 
-                                web-share" allowfullscreen>
-                                </iframe>
+                              <iframe style={{ width: '100%', height: '150px', margin: 'auto' }}
+                                    src={"https://www.youtube.com/embed/" + sermonData.id.videoId}
+                                    frameborder="0"
+                                    allow="accelerometer; 
+                                    autoplay; 
+                                    clipboard-write; 
+                                    encrypted-media; 
+                                    gyroscope; 
+                                    picture-in-picture; 
+                                    web-share" allowfullscreen>
+                               </iframe>
                               </div>
                             </Col>
                             <Col md={4}>
                               <div className='valign'>
                                 <div>
-                                  <h6 id="bluecolor" className="text-center">{sermonData.sermons_title}</h6>
+                                  <h6 id="bluecolor" className="text-center">{sermonData.snippet.title }</h6>
                                   <p id="bluecolor" className="text-center" style={{ fontSize: '13px' }}>
-                                    <FontAwesomeIcon icon={faUser} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_preacher}</span> &nbsp;
-
 
                                     <FontAwesomeIcon icon={faClock} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_date}</span> &nbsp;
-
-                                    <br></br>
-                                    <FontAwesomeIcon icon={faLocation} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_location}</span>
+                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.snippet.publishedAt}</span> &nbsp;
 
                                   </p>
                                 </div>
@@ -134,26 +147,11 @@ export const LiveStream = () => {
                               <div className='valign'>
                                 <p>
                                   <ButtonGroup className="me-2" aria-label="First group">
-                                    <Link to="#" className='btn btn-danger' id="vidbtn">
+                                    <Link to={"https://www.youtube.com/embed/" + sermonData.id.videoId} className='btn btn-danger' id="vidbtn" reloadDocument >
                                       <FontAwesomeIcon icon={faVideoCamera} />
                                     </Link>
                                   </ButtonGroup>
-                                  <ButtonGroup className="me-2" aria-label="Second group">
-                                    <Link to="#" className='btn btn-danger' id="vidbtn">
-                                      <FontAwesomeIcon icon={faFileAudio} />
-                                    </Link>
-                                  </ButtonGroup>
-                                  <ButtonGroup className="me-2" aria-label="Second group">
-                                    <Link to="#" className='btn btn-danger' id="vidbtn">
-                                      <FontAwesomeIcon icon={faDownload} />
-                                    </Link>
-                                  </ButtonGroup>
-                                  <ButtonGroup className="me-2" aria-label="Second group">
-                                    <Link to="#" className='btn btn-danger' id="vidbtn">
-                                      <FontAwesomeIcon icon={faShareNodes} />
-                                    </Link>
-                                  </ButtonGroup>
-
+          
                                 </p>
                               </div>
                             </Col>

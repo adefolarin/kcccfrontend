@@ -122,19 +122,19 @@ export const Footer = () => {
               <div className='' id="footerlinks">
                 <Row>
                   <Col sm={6}>
-                    <p><Link to="#" id="link">Live Service</Link></p>
-                    <p><Link to="#" id="link">Our Events</Link></p>
+                    <p><Link to="/livestream" id="link">Live Service</Link></p>
+                    <p><Link to="/event" id="link">Our Events</Link></p>
                     <p><Link to="#" id="link">E Store</Link></p>
-                    <p><Link to="#" id="link">Departments</Link></p>
-                    <p><Link to="#" id="link">Year In Review</Link></p>
+                    <p><Link to="/dept" id="link">Departments</Link></p>
+                    <p><Link to="/review" id="link" reloadDocument>Year In Review</Link></p>
                     <p><Link to="#" id="link">Give</Link></p>
                   </Col>
                   <Col sm={6}>
                     <p><Link to="#" id="link">Welcome Message</Link></p>
-                    <p><Link to="#" id="link">Our Mission</Link></p>
-                    <p><Link to="#" id="link">Food Bank</Link></p>
-                    <p><Link to="#" id="link">Sermons</Link></p>
-                    <p><Link to="#" id="link">Podcasts</Link></p>
+                    <p><Link to="/about" id="link">Our Mission</Link></p>
+                    <p><Link to="/foodbank" id="link">Food Bank</Link></p>
+                    <p><Link to="/sermon" id="link">Sermons</Link></p>
+                    <p><Link to="/podcast" id="link">Podcasts</Link></p>
                     <p><Link to="#" id="link">Donate</Link></p>
                   </Col>
                 </Row>
