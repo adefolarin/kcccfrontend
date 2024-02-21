@@ -22,6 +22,123 @@ import './Home.css'
 
 export const Home = () => {
 
+
+    /*********************************************************
+     POST THE FORM DATA TO THE API AND GET THE SEARHC RESULT
+  **********************************************************/
+
+     const [sermonsearch, setQuickSearch] = useState([]);
+     const [sermondate, setSermonDate] = useState([]);
+     const [sermontitle, setTopic] = useState([]);
+     const [sermonpreacher, setPreacher] = useState([]);
+   
+     const [getsermontitle, getTopic] = useState([]);
+     const [getsermonpreacher, getPreacher] = useState([]);
+   
+     const [sermon, getSermonSearch] = useState([]);
+   
+     const [sermonsearchres, getSermonSearchRes] = useState([]);
+   
+     const [sermon2, getSermonSearch2] = useState([]);
+   
+     const [sermonsearchres2, getSermonSearchRes2] = useState([]);
+   
+     const [buttontext, setButtonText] = useState('Search');
+     const [message, setMessageText] = useState();
+     const [successmessage, setSuccessMessage] = useState();
+     const [errormessage, setErrorMessage] = useState();
+   
+     const [buttontext2, setButtonText2] = useState('Search');
+     const [message2, setMessageText2] = useState();
+     const [successmessage2, setSuccessMessage2] = useState();
+     const [errormessage2, setErrorMessage2] = useState();
+   
+   
+   
+     const getQuickSearch = async () => {
+       setButtonText2("Processing");
+       if (sermonsearch === "") {
+         setMessageText2("error");
+         setErrorMessage2("All Fields are Required");
+         setButtonText2("Search");
+       } else {
+         try {
+   
+           const items = { sermonsearch };
+           //console.warn(items);
+           const result = await axios.post(serverurl + "/api/sermonquicksearch", items);
+   
+           if (result.data.sermonsearchdata['sermonsearch_result'] === "Not Found") {
+             setMessageText2("error");
+             //setErrorMessage2("No Result Found");
+             setErrorMessage("");
+           } else {
+             setMessageText2("success");
+             setMessageText("");
+             
+             //setSuccessMessage2("Result Found");
+             setSuccessMessage("");
+             getSermonSearch2(result.data.sermonsearchdata);
+   
+             getSermonSearchRes2(result.data.sermonsearchdata['searchresult']);
+             console.log(result.data);
+             //setSuccessMessage("success");
+           }
+   
+           setButtonText2("Search");
+   
+   
+         } catch (error) {
+           setMessageText2("error");
+           setErrorMessage2("!!Sorry, Your Request Could Not Be Processed");
+           setButtonText2("Search");
+           console.log(error);
+         }
+       }
+     };
+   
+     const getDeepSearch = async () => {
+       setButtonText("Processing");
+       if (sermondate === "" || sermontitle === "" || sermonpreacher === "") {
+         setMessageText("error");
+         setErrorMessage("All Fields are Required");
+         setButtonText("Search");
+       } else {
+         try {
+   
+           const items = { sermondate, sermontitle, sermonpreacher };
+           //console.warn(items);
+           const result = await axios.post(serverurl + "/api/sermondeepsearch", items);
+   
+           if (result.status == 200 && result.data.sermonsearchdata['sermonsearch_result'] === "Not Found") {
+             setMessageText("error");
+             //setErrorMessage("No Result Found");
+             setErrorMessage2("");
+           } else if(result.status == 200 && result.data.sermonsearchdata['sermonsearch_result'] != "Not Found") {
+             setMessageText("success");
+             setMessageText2("");
+             //setSuccessMessage("Result Found");
+             setSuccessMessage2("");
+   
+             getSermonSearch(result.data.sermonsearchdata);
+   
+             getSermonSearchRes(result.data.sermonsearchdata['searchresult']);
+             console.log(result);
+             //setSuccessMessage("success");
+           }
+   
+           setButtonText("Search");
+   
+   
+         } catch (error) {
+           setMessageText("error");
+           setErrorMessage("!!Sorry, Your Request Could Not Be Processed");
+           setButtonText("Search");
+           console.log(error);
+         }
+       }
+     };
+
   const eventfileurls = serverurl + "/admin/img/events/";
   const deptfileurls = serverurl + "/admin/img/departments/";
   const bannervideofileurl = serverurl + "/storage/admin/videos/banners/";
@@ -57,6 +174,16 @@ export const Home = () => {
         .then((response) => setSermons(response.data['sermons']));
   };
 
+  const fetchSermonTitleData = () => {
+    return axios.get(serverurl + "/api/sermontitle")
+      .then((response) => getTopic(response.data['sermontitles']));
+  };
+
+  const fetchSermonPreacherData = () => {
+    return axios.get(serverurl + "/api/sermonpreacher")
+      .then((response) => getPreacher(response.data['sermonpreachers']));
+  };
+
 
   useEffect(() => {
     fetchBannerData();
@@ -64,6 +191,8 @@ export const Home = () => {
     fetchNextEventData();
     fetchDeptsData();
     fetchSermonsData();
+    fetchSermonTitleData();
+    fetchSermonPreacherData();
  },[])
 
 
@@ -159,13 +288,13 @@ export const Home = () => {
 
             <Col sm={12} md={7}>
               <Card style={{ width: '100%' }} className='text-center' id="homecard2">
+              {
+                    nextevent && nextevent.map((nextEventData,index) => {
+                    return<>
                 <Card.Body>
                   <Card.Title>
                     <h5 id="bluecolor">UPCOMING EVENT</h5>
                   </Card.Title>
-                  {
-                    nextevent && nextevent.map((nextEventData,index) => {
-                    return<>
                   <Card.Text>        
                     <h5> { nextEventData.events_title } </h5>
                     <div>
@@ -186,12 +315,12 @@ export const Home = () => {
                       </Row>
                     </div>               
                   </Card.Text>
-                      </>
-                     })
-                    }
-
-                  <Link to="#" class="btn btn-danger" variant="danger" id="btn">Join Event</Link>
+                 
+                  <Link to={"/event-details?eventid=" + nextEventData.events_id} class="btn btn-danger" variant="danger" id="btn" reloadDocument>Join Event</Link>
                 </Card.Body>
+                </>
+                 })
+                }
               </Card>
             </Col>
           </Row>
@@ -212,7 +341,7 @@ export const Home = () => {
                   <h5 id="bluecolor" className='aboutkccc'>About KCCC</h5>
                   <h6>The Wealthy Place Where Champions Are Raised</h6>
                   <p>
-                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                    Kingdom Connection Christian Center is a Word of Faith, non-denominational, full gospel church.
                   </p>
                 </Col>
               </Row>
@@ -221,14 +350,14 @@ export const Home = () => {
                 <Col sm={6}>
                   <h5 id="bluecolor">Our Vision</h5>
                   <p>
-                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                     We believe the Bible, the complete writings of both the Old and New Testaments is the literal Word of God, verbally inspired by the Holy Spirit, inerrant as originally given by God, and infallible as the standard of our faith and practice...
                   </p>
                 </Col>
                 <Col sm={6}>
                   <div id="homeourmission">
                   <h5 id="bluecolor">Our Mission</h5>
                   <p>
-                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                  Our mission is reaching and harvesting lost souls for Christ and teaching the Body of Christ how to effectively apply God’s principles to have victory in every area of life. Kingdom Connection Christian Center is a church committed to raising champions in the body of Christ.
                   </p>
                   </div>
                 </Col>
@@ -269,85 +398,253 @@ export const Home = () => {
                 </Nav>
                 <Tab.Content style={{ marginTop: '20px' }}>
                   <Tab.Pane eventKey="sermon">
-                   {/*} <SearchFormGroup />*/}
 
-                    <Container>
+                  <SearchFormGroup quicksearch={sermonsearch} sermondate={sermondate} topic={sermontitle} preacher={sermonpreacher} setQuickSearch={setQuickSearch} setSermonDate={setSermonDate} setTopic={setTopic} setPreacher={setPreacher} buttontext={buttontext} getDeepSearch={getDeepSearch} message={message} errormessage={errormessage} successmessage={successmessage} getsermontitle={getsermontitle} getsermonpreacher={getsermonpreacher} getQuickSearch={getQuickSearch} buttontext2={buttontext2} message2={message2} errormessage2={errormessage2} successmessage2={successmessage2} />
 
-                    {
-              
-                       sermons && sermons.length > 0 && sermons.map((sermonData) => {
-                      return <Row>
-                        <div
-                          style={{ borderRadius: '0px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '20px' }}>
-                          <Row>
-                            <Col md={4}>
-                              <div className=''>
-                                <iframe style={{ width: '100%', height: '150px', margin: 'auto' }}  
-                                src={sermonData.sermons_file}
-                                frameborder="0" 
-                                allow="accelerometer; 
+                                     {
+
+                    message != "success" && message2 != "success" ?
+
+                      <Container>
+
+                        {
+
+                          sermons && sermons.length > 0 && sermons.map((sermonData) => {
+                            return <Row>
+                              <div
+                                style={{ borderRadius: '0px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '20px' }}>
+                                <Row>
+                                  <Col md={4}>
+                                    <div className=''>
+                                      <iframe style={{ width: '100%', height: '150px', margin: 'auto' }}
+                                        src={sermonData.sermons_file}
+                                        frameborder="0"
+                                        allow="accelerometer; 
                                 autoplay; 
                                 clipboard-write; 
                                 encrypted-media; 
                                 gyroscope; 
                                 picture-in-picture; 
                                 web-share" allowfullscreen>
-                                </iframe>
+                                      </iframe>
+                                    </div>
+                                  </Col>
+                                  <Col md={4}>
+                                    <div className='valign'>
+                                      <div>
+                                        <h6 id="bluecolor" className="text-center">{sermonData.sermons_title}</h6>
+                                        <p id="bluecolor" className="text-center" style={{ fontSize: '13px' }}>
+                                          <FontAwesomeIcon icon={faUser} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_preacher}</span> &nbsp;
+
+
+                                          <FontAwesomeIcon icon={faClock} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_date}</span> &nbsp;
+
+                                          <br></br>
+                                          <FontAwesomeIcon icon={faLocation} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_location}</span>
+
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Col>
+                                  <Col md={4}>
+                                    <div className='valign'>
+                                      <p>
+                                        <ButtonGroup className="me-2" aria-label="First group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faVideoCamera} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faFileAudio} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faDownload} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faShareNodes} />
+                                          </Link>
+                                        </ButtonGroup>
+
+                                      </p>
+                                    </div>
+                                  </Col>
+                                </Row>
                               </div>
-                            </Col>
-                            <Col md={4}>
-                              <div className='valign'>
-                                <div>
-                                  <h6 id="bluecolor" className="text-center">{sermonData.sermons_title}</h6>
-                                  <p id="bluecolor" className="text-center" style={{ fontSize: '13px' }}>
-                                    <FontAwesomeIcon icon={faUser} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_preacher}</span> &nbsp;
+                            </Row>
+                          })
+                        }
+                      </Container> :
+
+                      <Container>
+
+                        {
+                          message === "success" && message2 === "" ?
+                          sermon && sermon.length > 0 && sermon.map((sermonSearchDeepData) => {
+                            return <Row>
+                              {
+                              sermonSearchDeepData.sermonsearch_result != "Not Found" ?
+                              <div
+                                style={{ borderRadius: '0px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '20px' }}>
+                                <Row>
+                                  <Col md={4}>
+                                    <div className=''>
+                                      <iframe style={{ width: '100%', height: '150px', margin: 'auto' }}
+                                        src={sermonSearchDeepData.sermons_file}
+                                        frameborder="0"
+                                        allow="accelerometer; 
+                              autoplay; 
+                              clipboard-write; 
+                              encrypted-media; 
+                              gyroscope; 
+                              picture-in-picture; 
+                              web-share" allowfullscreen>
+                                      </iframe>
+                                    </div>
+                                  </Col>
+                                  <Col md={4}>
+                                    <div className='valign'>
+                                      <div>
+                                        <h6 id="bluecolor" className="text-center">{sermonSearchDeepData.sermons_title}</h6>
+                                        <p id="bluecolor" className="text-center" style={{ fontSize: '13px' }}>
+                                          <FontAwesomeIcon icon={faUser} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonSearchDeepData.sermons_preacher}</span> &nbsp;
 
 
-                                    <FontAwesomeIcon icon={faClock} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_date}</span> &nbsp;
+                                          <FontAwesomeIcon icon={faClock} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonSearchDeepData.sermons_date}</span> &nbsp;
 
-                                    <br></br>
-                                    <FontAwesomeIcon icon={faLocation} />
-                                    &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonData.sermons_location}</span>
+                                          <br></br>
+                                          <FontAwesomeIcon icon={faLocation} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonSearchDeepData.sermons_location}</span>
 
-                                  </p>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col md={4}>
-                              <div className='valign'>
-                                <p>
-                                  <ButtonGroup className="me-2" aria-label="First group">
-                                    <Link to="#" className='btn btn-danger' id="vidbtn">
-                                      <FontAwesomeIcon icon={faVideoCamera} />
-                                    </Link>
-                                  </ButtonGroup>
-                                  <ButtonGroup className="me-2" aria-label="Second group">
-                                    <Link to="#" className='btn btn-danger' id="vidbtn">
-                                      <FontAwesomeIcon icon={faFileAudio} />
-                                    </Link>
-                                  </ButtonGroup>
-                                  <ButtonGroup className="me-2" aria-label="Second group">
-                                    <Link to="#" className='btn btn-danger' id="vidbtn">
-                                      <FontAwesomeIcon icon={faDownload} />
-                                    </Link>
-                                  </ButtonGroup>
-                                  <ButtonGroup className="me-2" aria-label="Second group">
-                                    <Link to="#" className='btn btn-danger' id="vidbtn">
-                                      <FontAwesomeIcon icon={faShareNodes} />
-                                    </Link>
-                                  </ButtonGroup>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Col>
+                                  <Col md={4}>
+                                    <div className='valign'>
+                                      <p>
+                                        <ButtonGroup className="me-2" aria-label="First group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faVideoCamera} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faFileAudio} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faDownload} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faShareNodes} />
+                                          </Link>
+                                        </ButtonGroup>
 
-                                </p>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Row>
-                       })
-                     }
-                    </Container>
+                                      </p>
+                                    </div>
+                                  </Col>
+                                </Row>
+                                
+                              </div> : <p className='text-center'>NO RESULT FOUND</p>
+                               }
+                            </Row>
+                          }) : ''
+                        }
+
+
+                        {
+                          message2 === "success" && message === "" ?
+                          sermon2 && sermon2.length > 0 && sermon2.map((sermonSearchQuickData) => {
+                            return <Row>
+                               {
+                              sermonSearchQuickData.sermonsearch_result != "Not Found" ?
+                              <div
+                                style={{ borderRadius: '0px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '20px' }}>
+                                <Row>
+                                  <Col md={4}>
+                                    <div className=''>
+                                      <iframe style={{ width: '100%', height: '150px', margin: 'auto' }}
+                                        src={sermonSearchQuickData.sermons_file}
+                                        frameborder="0"
+                                        allow="accelerometer; 
+                                        autoplay; 
+                                        clipboard-write; 
+                                        encrypted-media; 
+                                        gyroscope; 
+                                        picture-in-picture; 
+                                        web-share" allowfullscreen>
+                                      </iframe>
+                                    </div>
+                                  </Col>
+                                  <Col md={4}>
+                                    <div className='valign'>
+                                      <div>
+                                        <h6 id="bluecolor" className="text-center">{sermonSearchQuickData.sermons_title}</h6>
+                                        <p id="bluecolor" className="text-center" style={{ fontSize: '13px' }}>
+                                          <FontAwesomeIcon icon={faUser} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonSearchQuickData.sermons_preacher}</span> &nbsp;
+
+
+                                          <FontAwesomeIcon icon={faClock} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonSearchQuickData.sermons_date}</span> &nbsp;
+
+                                          <br></br>
+                                          <FontAwesomeIcon icon={faLocation} />
+                                          &nbsp;<span style={{ color: '#000', fontWeight: '600' }}>{sermonSearchQuickData.sermons_location}</span>
+
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Col>
+                                  <Col md={4}>
+                                    <div className='valign'>
+                                      <p>
+                                        <ButtonGroup className="me-2" aria-label="First group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faVideoCamera} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faFileAudio} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faDownload} />
+                                          </Link>
+                                        </ButtonGroup>
+                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                            <FontAwesomeIcon icon={faShareNodes} />
+                                          </Link>
+                                        </ButtonGroup>
+
+                                      </p>
+                                    </div>
+                                  </Col>
+                                </Row>
+                              </div> : <p className='text-center'>No Result Found</p>
+                              }
+                            </Row>
+                          }) : ''
+                        }
+                      </Container>
+                  }
+
 
 
                   </Tab.Pane>
@@ -364,7 +661,8 @@ export const Home = () => {
                 <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
                 <Col sm={4}>
                   <p class="text-center">
-                    <Link to="/sermons" class='text-center' id='bannerbtn' className='btn btn-danger'>More Sermons</Link>
+                    <Link to="/sermons" class='text-center' id='bannerbtn' 
+                    className='btn btn-danger' reloadDocument>More Sermons</Link>
                   </p>
                 </Col>
                 <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
@@ -407,7 +705,7 @@ export const Home = () => {
             <Col md={4}>
               <p style={{ textAlign: 'center', verticalAlign: 'middle' }}>
                 <div id="homegivebtnid">
-                  <Link to="#" className='btn btn-danger' id="homegivebtn">
+                  <Link to="/give" className='btn btn-danger' id="homegivebtn" reloadDocument>
                     Give Now
                   </Link>
                 </div>
@@ -437,7 +735,7 @@ export const Home = () => {
                 <p>
                   Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
                 </p>
-                <p><Link to="" className='btn text-white' id="homegivebtn" >Donate Now</Link></p>
+                <p><Link to="/donation" className='btn text-white' id="homegivebtn" reloadDocument>Donate Now</Link></p>
               </div>
             </div>
           </div>
@@ -464,7 +762,7 @@ export const Home = () => {
                 <p>
                   Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
                 </p>
-                <Link to="#" className='btn btn-danger' id="homegivebtn">
+                <Link to="/estore" className='btn btn-danger' id="homegivebtn">
                   Explore Now
                 </Link>
               </div>

@@ -109,9 +109,9 @@ export function NavBar() {
                 </NavDropdown>
               </Nav>
               <Nav>
-                <Nav.Link id="givenavheadlink">
-                  <Link to="/give" className='btn btn-danger' style={{ borderRadius: '0', backgroundColor: 'red', fontWeight: '700', fontSize: '20px' }} id="givenavlink">GIVE</Link>
-                </Nav.Link>
+               
+                  <Nav.Link href="/give" className='btn btn-danger' style={{ borderRadius: '0', backgroundColor: 'red', fontWeight: '700', fontSize: '20px', color:'#fff' }} id="givenavlink">GIVE</Nav.Link>
+              
               </Nav>
             </Navbar.Collapse>
           </Container>

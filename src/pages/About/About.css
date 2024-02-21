@@ -21,6 +21,13 @@
     height: 500px;
 }
 
+#welcome p {
+ font-size: 17px;
+}
+
+.homeabout p {
+ font-size: 17px;
+}
 
 
 @media screen and (max-width: 767px) {

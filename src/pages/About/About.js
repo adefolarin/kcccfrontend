@@ -39,7 +39,7 @@ export const About = () => {
                 <Col md={12} id="aboutvidcol">
                   <div className='' id="video">
                     <video controls style={{ width: '100%', height: '100%', margin: 'auto' }}>
-                      <source src="videos/course.mp4" type="video/mp4" />
+                      <source src="videos/aam.mp4" type="video/mp4" />
                     </video>
                   </div>
                 </Col>
@@ -54,15 +54,33 @@ export const About = () => {
         <Container>
           <Row>
             <Col md={12}>
-              <div id="welcome">
+              <div id="welcome" style={{ borderRadius: '0px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '50px' }}>
                 <h4 id="bluecolor">WELCOME MESSAGE</h4>
                 <p>
-                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                We are a multi-racial church planted by Hands-On World Missions, reaching out to the international communities of Denver metro area of Colorado State. People from at least 18 countries gather together every week to worship the living God in various languages and styles.We are a multi-racial church planted by Hands-On World Missions, reaching out to the international communities of Denver metro area of Colorado State. People from at least 18 countries gather together every week to worship the living God in various languages and styles
+                What kind of Church is this?
                 </p>
 
                 <p>
-                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                Our belief in God
+                We believe there is one living and true God, the self-existent, sovereign, transcendent, perfect, infinite and eternal creator of the universe. He is revealed in the unity of the Godhead as God the Father, God the Son, and God the Holy Spirit, each having a distinct ministry in relation to His creation and His people..
                 </p>
+                
+                <p>
+                Our belief in the Word of God
+                We believe the Bible, the complete writings of both the Old and New Testaments is the literal Word of God, verbally inspired by the Holy Spirit, inerrant as originally given by God, and infallible as the standard of our faith and practice.
+                </p>
+
+                <p>
+                Our belief in the nature of man
+                Man was originally created in the image and likeness of God but became a sinful creature by personal rebellion against God and perpetuated a sinful nature to all his descendants. Man is universally sinful by nature and by choice. He is void of spiritual life and incapable of saving himself. He stands under the righteous judgment and wrath of God, condemned to a literal, eternal, and fiery hell
+                </p>
+ 
+                <p>               
+                Our belief in salvation
+                Salvation is the free gift of God by grace through faith; it is totally the act of God apart from any work or merit of man.
+                </p>
+
               </div>
             </Col>
           </Row>
@@ -83,7 +101,8 @@ export const About = () => {
                   <h5 id="bluecolor" className='aboutkccc'>About KCCC</h5>
                   <h6>The Wealthy Place Where Champions Are Raised</h6>
                   <p>
-                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                  Kingdom Connection Christian Center is a Word of Faith, non-denominational, full gospel church.
+
                   </p>
                 </Col>
               </Row>
@@ -97,10 +116,11 @@ export const About = () => {
                     </Button> &nbsp; &nbsp; Our Vision
                   </h5>
                   <p>
-                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                     We believe the Bible, the complete writings of both the Old and New Testaments is the literal Word of God, verbally inspired by the Holy Spirit, inerrant as originally given by God, and infallible as the standard of our faith and practice.
                   </p>
                 </Col>
                 <Col sm={12}>
+                  <br></br>
                   <div id="homeourmission">
                     <h5 id="bluecolor">
                       <Button style={{ borderRadius: '50px', backgroundColor: 'red', border: 'none' }}>
@@ -109,7 +129,8 @@ export const About = () => {
                       </Button> &nbsp; &nbsp; Our Mission
                     </h5>
                     <p>
-                      Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                    Our mission is reaching and harvesting lost souls for Christ and teaching the Body of Christ how to effectively apply God’s principles to have victory in every area of life. Kingdom Connection Christian Center is a church committed to raising champions in the body of Christ. 
+                    <br></br><br></br>We are here to serve you and to partner with you in any way that the Lord might be leading us. Get in touch with us and let us take the gospel to the ends of the earth together. As we always say, it’s time for you to “GET CONNECTED"
                     </p>
                   </div>
                 </Col>
