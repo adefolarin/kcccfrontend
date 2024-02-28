@@ -65,7 +65,7 @@ export const SearchFormGroup = ({ quicksearch, sermondate, topic, preacher, setQ
 
             <p style={{ backgroundColor: '#d8d8d8', padding: '10px' }}>
                 <InputGroup size="md">
-                    <Form.Control type="text" placeholder="Date" value={sermondate} onChange={(event) => setSermonDate(event.target.value)} />
+                    <Form.Control type="date" placeholder="Date" value={sermondate} onChange={(event) => setSermonDate(event.target.value)} />
                     <Form.Select aria-label="" value={topic} onChange={(event) => setTopic(event.target.value)}>
                         <option>Topic</option>
                         {

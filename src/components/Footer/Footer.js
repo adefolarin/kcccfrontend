@@ -63,7 +63,11 @@ export const Footer = () => {
                 <br></br><br></br>
                 <div>
                   <p>
-                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                  The Wealthy Place Where Champions Are Raised.
+                  Kingdom Connection Christian Center is a Word of Faith, 
+                  non-denominational, full gospel church.
+
+
                   </p>
                 </div>
 

@@ -242,16 +242,16 @@ export const Home = () => {
                   <div className="caption">
                     <h2>WELCOME TO KCCC</h2>
                     <h6>KINGDOM CONNECTION CHRISTIAN CENTER</h6>
-                    <p>Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.</p>
+                    <p>The Wealthy Place Where Champions Are Raised! Kingdom Connection Christian Center is a Word Of Faith, non-denominational, full gospel church</p>
                     <div className="main-button-red">
                       <div className="scroll-to-section">
                         <p>
 
                           <ButtonGroup className="me-2" aria-label="First group">
-                            <Link to="#contact" className='btn btn-danger' id="bannerbtn">Welcome Message</Link>
+                            <Link to="/about" reloadDocument className='btn btn-danger' id="bannerbtn">Welcome Message</Link>
                           </ButtonGroup>
                           <ButtonGroup className="me-2" aria-label="Second group">
-                            <Link to="#contact" className='btn btn-danger' id="bannerbtn">Join Us Now!</Link>
+                            <Link to="/livestream" reloadDocument className='btn btn-danger' id="bannerbtn">Join Us Now!</Link>
                           </ButtonGroup>
 
                         </p>
@@ -279,9 +279,10 @@ export const Home = () => {
                     <h5 id="bluecolor">YEAR IN REVIEW</h5>
                   </Card.Title>
                   <Card.Text>
-                    Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                    Explore our annual recap to gain access to events, 
+                    sermons, galleries, and much more from previous years.
                   </Card.Text>
-                  <Link to="#" class="btn btn-danger" variant="danger" id="btn">Learn More</Link>
+                  <Link to="/review" reloadDocument class="btn btn-danger" variant="danger" id="btn">Learn More</Link>
                 </Card.Body>
               </Card>
             </Col>
@@ -696,7 +697,9 @@ export const Home = () => {
                   <div id="faithid">
                     <h5 id="bluecolor">Sharing Our Faith</h5>
                     <p>
-                      Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                    Each of you should give what you have decided  in
+                    your heart to give, not reluctantly or under compulsion,
+                    for God loves a cheerful giver, 2 Corinthians 9:17
                     </p>
                   </div>
                 </Col>
@@ -733,7 +736,7 @@ export const Home = () => {
               <div id="missionid" className='text-center'>
                 <h4>Support Our Mission</h4>
                 <p>
-                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                  Support our mission, donate to spread the gospel of Christ in all over the word.
                 </p>
                 <p><Link to="/donation" className='btn text-white' id="homegivebtn" reloadDocument>Donate Now</Link></p>
               </div>
@@ -760,7 +763,8 @@ export const Home = () => {
               <div id="homestoreid">
                 <h5 id="bluecolor">Visit Our E-Store</h5>
                 <p>
-                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                  Explore our e-store for a soulful collection of faith-filled 
+                  books authored by Bishop Israel Ade Ajala.
                 </p>
                 <Link to="/estore" className='btn btn-danger' id="homegivebtn">
                   Explore Now
@@ -790,7 +794,8 @@ export const Home = () => {
               <div id="foodbankid">
                 <h5 id="bluecolor">KCCC FOOD BANK</h5>
                 <p>
-                  Lorem ipsum dolor sit amet. Qui quia exercitationem et dolorem quis et saepe impedit qui voluptas nulla. Ut laboriosam quos et porro necessitatibus sit sint optio quo porro error est quia reiciendis et iusto quia.
+                 Our food bank welcomes everyone to partake in God's gracious gift to humanity. Join us every Thursday to experience the blessings.
+
                 </p>
                 <p className='text-right'>
                   <Link to="/foodbank" reloadDocument className='btn btn-danger' id="homegivebtn">

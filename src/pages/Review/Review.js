@@ -200,7 +200,7 @@ export const Review = () => {
 
                             <p style={{ backgroundColor: '#d8d8d8', padding: '10px' }}>
                                 <InputGroup size="md">
-                                    <Form.Control type="text" placeholder="Date" value={eventdate}
+                                    <Form.Control type="date" placeholder="Date" value={eventdate}
                                         onChange={(e) => setEventDate(e.target.value)} />
                                     <Form.Select aria-label="" value={eventcategoryname} onChange={(e) => setEventCategoryName(e.target.value)}>
                                         <option>Activity</option>

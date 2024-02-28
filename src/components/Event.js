@@ -69,7 +69,7 @@ export const Event = ({ event, eventfileurl }) => {
                     <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
                     <Col md={4}>
                         <p class="text-center">
-                            <Link to="/events" class='text-center' id='bannerbtn' className='btn btn-danger'>More Events</Link>
+                            <Link to="/events" reloadDocument class='text-center' id='bannerbtn' className='btn btn-danger'>More Events</Link>
                         </p>
                     </Col>
                     <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>

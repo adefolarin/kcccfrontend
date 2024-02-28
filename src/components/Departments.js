@@ -37,7 +37,7 @@ export const Departments = ({ depts }) => {
                                             <Card.Body>
                                                 <div className='text-center' style={{ marginTop: '-20px' }}>
                                                     <p>
-                                                       { deptData.departments_content }
+                                                       { deptData.departments_content.substring(0,150) }
                                                     </p>
                                                     <Link to={"/dept-details?deptid=" + deptData.departments_id} style={{ textDecoration: 'none', color: 'red' }} reloadDocument>
                                                         Learn More <FontAwesomeIcon icon={faAngleRight} />
