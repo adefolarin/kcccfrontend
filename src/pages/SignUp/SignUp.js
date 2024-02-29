@@ -187,7 +187,7 @@ export const SignUp = () => {
                                             </Col>
                                             <Col>
                                                 <InputGroup className="mb-3" controlId="">
-                                                    <Form.Control type="date" dateformat="YYYY-MM-DD" size="lg" placeholder='Date Of Birth' style={{ fontSize: '16px', padding: '15px' }} 
+                                                    <Form.Control type="date" size="lg" placeholder='Date Of Birth' style={{ fontSize: '16px', padding: '15px' }} 
                                                         value={membregs_dob} onChange={(e) => setMembRegsDob(e.target.value)} />
                                                 </InputGroup>
                                             </Col>

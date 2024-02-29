@@ -290,14 +290,21 @@ export const Home = () => {
             <Col sm={12} md={7}>
               <Card style={{ width: '100%' }} className='text-center' id="homecard2">
               {
-                    nextevent && nextevent.map((nextEventData,index) => {
-                    return<>
+                nextevent && nextevent.map((nextEventData,index) => {
+                return<>
+                {
+                nextEventData.events_title !== "" ?
                 <Card.Body>
                   <Card.Title>
                     <h5 id="bluecolor">UPCOMING EVENT</h5>
                   </Card.Title>
                   <Card.Text>        
-                    <h5> { nextEventData.events_title } </h5>
+                    <h5> 
+                      { 
+                        nextEventData.events_title
+
+                      } 
+                    </h5>
                     <div>
                       <Row>
                         <Col md={3}>
@@ -318,7 +325,14 @@ export const Home = () => {
                   </Card.Text>
                  
                   <Link to={"/event-details?eventid=" + nextEventData.events_id} class="btn btn-danger" variant="danger" id="btn" reloadDocument>Join Event</Link>
+                </Card.Body> :
+                <Card.Body>
+                <Card.Title>
+                  <h5 id="bluecolor">NO UPCOMING EVENT</h5>
+                  <h6>There is no upcoming event at the moment</h6>
+                </Card.Title>
                 </Card.Body>
+                }
                 </>
                  })
                 }

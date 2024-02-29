@@ -16,7 +16,7 @@ export const Resources = () => {
     /********************************************
               GET THE FILE URLS
     *********************************************/
-    const resourcesfileurl = serverurl + "/admin/docs/resources/";
+    const resourcesfileurl = serverurl + "/storage/admin/docs/resources/";
 
     /**********************************************
        GET THE NEWS FROM THE API
