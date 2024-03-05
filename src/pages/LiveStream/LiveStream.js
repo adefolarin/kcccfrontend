@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useState, useRef } from 'react'
 import { Container, Col, Row, Card, ButtonToolbar, ButtonGroup, Image, Tab, Nav, InputGroup, Form, Button } from 'react-bootstrap';
 import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
@@ -10,7 +10,9 @@ import { serverurl } from '../../providers/ServerUrl';
 import { SearchFormGroup } from '../../components/Forms/SearchFormGroup';
 import { apiKey } from '../../providers/ServerUrl';
 import { servicechannelid } from '../../providers/ServerUrl';
-
+import { LiveCountDownTimer } from '../../components/LiveCountDownTimer';
+import Modal from 'react-bootstrap/Modal';
+import { VideoModal } from '../../components/VideoModal';
 
 
 export const LiveStream = () => {
@@ -25,12 +27,17 @@ export const LiveStream = () => {
      **********************************************/
 
     const [sermons, setSermons] = useState([]);
+    const [networkerror, setNetWorkError] = useState();
 
 
-    const fetchSermonData = () => {
-        return axios.get('https://www.googleapis.com/youtube/v3/search?key=' 
+    const fetchSermonData = async () => {
+       try {
+        return await axios.get('https://www.googleapis.com/youtube/v3/search?key=' 
         + apiKey + '&channelId=' + servicechannelid + '&part=snippet,id&maxResults=50&order=date')
             .then((response) => setSermons(response.data['items']));
+       } catch(error) {
+          setNetWorkError("Oops!!! Network Error");
+       }
 
     };
 
@@ -44,10 +51,51 @@ export const LiveStream = () => {
 
     }
 
+    // LIVE COUNTDWNS
+    const [nextlivestream, setNextLiveStream] = useState([]);
+
+    const fetchNextLiveStreamData = async () => {
+      try {
+      return await axios.get(serverurl + "/api/livecountdown")
+          .then((response) => setNextLiveStream(response.data['livecountdowns']));
+      } catch(error) {
+            setNetWorkError("Oops!!! Network Error");
+      }
+    };
+
+    useEffect(() => {
+      fetchNextLiveStreamData();
+   },[])
+
+   // MODAL
+  
+   const [show, setShow] = useState(false);
+
+   const [videotitle, setVideoTitle] = useState();
+   const [videoid, setVideoID] = useState();
+
+   const handleClose = () => setShow(false);
+   
+   const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
+   const [fullscreen, setFullscreen] = useState(true);
+
+
+   const loadVideo = (videotitle,videoid,breakpoint) => {
+       //title = inputRef.current.value;
+       setVideoTitle(videotitle);
+       setVideoID(videoid);
+       setFullscreen(breakpoint);
+       setShow(true);
+   }
+
+
+
 
 
     return (
         <div>
+      
+         <VideoModal show={show} videoid={videoid} handleClose={handleClose} />
 
             <div>
                 <br></br><br></br>
@@ -65,33 +113,77 @@ export const LiveStream = () => {
                 </div>
             </div>
             <br></br><br></br>
-            <div>
-                <Container>
-                    <Row>
+
+                 {/* Year in Review and Event Clock */}
+      <div>
+        <Container style={{ position: 'relative' }}>
+          <Row>
+            <Col sm={12} md={12}>
+              <Card style={{ width: '100%' }} className='text-center' id="homecard2">
+                   <h4>{ networkerror }</h4>
+              {
+                nextlivestream && nextlivestream.map((nextLiveStreamData,index) => {
+                return<>
+                {
+                nextLiveStreamData.livecountdowns_status === "true" ?
+                <Card.Body>
+                  <Card.Title>
+                    <h5 id="bluecolor">COUNT DOWN TO THE LIVE VIDEO</h5>
+                  </Card.Title>
+                  <Card.Text>       
+                    <div>
+                      <Row>
                         <Col md={12}>
-                            <Card id="deptcard" className="eventdetailimg">
-                            <iframe style={{ width: '100%', height: '500px', margin: 'auto' }}
-                                    src="https://www.youtube.com/embed/live_stream?channel=UC_8_w-pM9yJXpqjMJguouLw"
-                                    frameborder="0"
-                                    allow="accelerometer; 
-                                    autoplay; 
-                                    clipboard-write; 
-                                    encrypted-media; 
-                                    gyroscope; 
-                                    picture-in-picture; 
-                                    web-share" allowfullscreen>
-                               </iframe>
-                            </Card>
+                         
+                             <LiveCountDownTimer livecountdown = {nextLiveStreamData.livecountdowns_datetime} />
+                          
                         </Col>
-                    </Row>
+                      </Row>
+                    </div>                  
+                  </Card.Text>
+                </Card.Body> :
+                <Card.Body>
+                <Card.Title>
+                </Card.Title>
+                  <div>
+                  <Container>
+                      <Row>
+                          <Col md={12}>
+                              <Card id="deptcard" className="eventdetailimg">
+                              <iframe
+                                      id="frameid"
+                                      src="https://www.youtube.com/embed/live_stream?channel=UC_8_w-pM9yJXpqjMJguouLw"
+                                      frameborder="0"
+                                      allow="accelerometer; 
+                                      autoplay; 
+                                      clipboard-write; 
+                                      encrypted-media; 
+                                      gyroscope; 
+                                      picture-in-picture; 
+                                      web-share" allowfullscreen>
+                              </iframe>
+                              </Card>
+                          </Col>
+                      </Row>
 
 
-                    <br></br><br></br>
-                    <Row>
+                      <br></br><br></br>
+                      <Row>
 
-                    </Row>
-                </Container>
-            </div>
+                      </Row>
+                  </Container>
+              </div>
+                </Card.Body>
+                }
+                </>
+                 })
+                }
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
 
             <br></br><br></br>
           <Container>
@@ -110,7 +202,7 @@ export const LiveStream = () => {
 
                     {
               
-                       sermons && sermons.length > 0 && sermons.map((sermonData) => {
+                       sermons && sermons.length > 0 && sermons.map((sermonData,index) => {
                       return <Row>
                         <div
                           style={{ borderRadius: '0px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', padding: '20px' }}>
@@ -147,11 +239,15 @@ export const LiveStream = () => {
                               <div className='valign'>
                                 <p>
                                   <ButtonGroup className="me-2" aria-label="First group">
-                                    <Link to={"https://www.youtube.com/embed/" + sermonData.id.videoId} className='btn btn-danger' id="vidbtn" reloadDocument >
+
+                                    
+                                    <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonData.snippet.title,sermonData.id.videoId,values)}}>
                                       <FontAwesomeIcon icon={faVideoCamera} />
                                     </Link>
-                                  </ButtonGroup>
-          
+                                   
+
+                                    </ButtonGroup>
+
                                 </p>
                               </div>
                             </Col>
@@ -161,6 +257,7 @@ export const LiveStream = () => {
                        })
                      }
                     </Container>
+                  
 
 
             </Col>

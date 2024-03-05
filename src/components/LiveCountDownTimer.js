@@ -3,7 +3,7 @@ import { React, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Container, Col, Row, ButtonGroup, Button } from 'react-bootstrap';
-import "./EventCountDownTimer.css";
+import "./LiveCountDownTimer.css";
 import axios  from 'axios';
 import { serverurl } from "../providers/ServerUrl";
 
@@ -37,12 +37,6 @@ y.addEventListener("change", function() {
   changeSize(y);
 });
 
-/*const navigate = useNavigate();
-const goToEvent = () => {
-  navigate('/event');
-}*/
-
-
 
 
 const renderTime = (dimension, time) => {
@@ -59,7 +53,7 @@ const getTimeMinutes = (time) => ((time % hourSeconds) / minuteSeconds) | 0;
 const getTimeHours = (time) => ((time % daySeconds) / hourSeconds) | 0;
 const getTimeDays = (time) => (time / daySeconds) | 0;
 
-export function EventCountDownTimer({eventcountdown}) {
+export function LiveCountDownTimer({livecountdown}) {
 
 //const [eventcountdown, setEventCountDown] = useState([]);
 
@@ -74,7 +68,7 @@ export function EventCountDownTimer({eventcountdown}) {
 
 //fetchEventCountDownData();
 
-  const countdown = eventcountdown;
+  const countdown = livecountdown;
 
 
   const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
@@ -83,6 +77,12 @@ export function EventCountDownTimer({eventcountdown}) {
   const remainingTime = endTime - stratTime;
   const days = Math.ceil(remainingTime / daySeconds);
   const daysDuration = days * daySeconds;
+
+
+    const navigate = useNavigate();
+    const goToLiveStream = () => {
+      navigate('/livestream');
+    }
 
   return (
     <div className="Timer">
@@ -146,7 +146,7 @@ export function EventCountDownTimer({eventcountdown}) {
             return { shouldRepeat: true } // repeat animation in 1.5 seconds
           } else {
             //alert("Great");
-            
+            goToLiveStream();
           }
         }}
       >

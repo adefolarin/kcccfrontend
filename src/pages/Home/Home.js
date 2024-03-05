@@ -17,6 +17,8 @@ import axios  from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
 import { CDBAnimation, CDBContainer } from 'cdbreact';
 //import { Podcasts } from '../../components/Podcasts';
+import Modal from 'react-bootstrap/Modal';
+import { VideoModal } from '../../components/VideoModal';
 
 
 import './Home.css'
@@ -219,8 +221,31 @@ export const Home = () => {
         fetchPodcastData();
     }, [])*/
 
+
+    // Loading the Video Modal
+      
+   const [show, setShow] = useState(false);
+
+   const [videotitle, setVideoTitle] = useState();
+   const [videoid, setVideoID] = useState();
+
+   const handleClose = () => setShow(false);
+   
+   const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
+   const [fullscreen, setFullscreen] = useState(true);
+
+
+   const loadVideo = (videotitle,videoid,breakpoint) => {
+       //title = inputRef.current.value;
+       setVideoTitle(videotitle);
+       setVideoID(videoid);
+       setFullscreen(breakpoint);
+       setShow(true);
+   }
+
   return (
     <div>
+        <VideoModal show={show} videoid={videoid} handleClose={handleClose} />
 
       {/* Banner */}
       <div expand="lg">
@@ -322,7 +347,7 @@ export const Home = () => {
                           
                         </Col>
                       </Row>
-                    </div>               
+                    </div>                  
                   </Card.Text>
                  
                   <Link to={"/event-details?eventid=" + nextEventData.events_id} class="btn btn-danger" variant="danger" id="btn" reloadDocument>Join Event</Link>
@@ -469,8 +494,8 @@ export const Home = () => {
                                     <div className='valign'>
                                       <p>
                                         <ButtonGroup className="me-2" aria-label="First group">
-                                          <Link to="#" className='btn btn-danger' id="vidbtn">
-                                            <FontAwesomeIcon icon={faVideoCamera} />
+                                        <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonData.sermons_title,sermonData.sermons_id,values)}}>
+                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
                                         <ButtonGroup className="me-2" aria-label="Second group">
@@ -629,8 +654,8 @@ export const Home = () => {
                                     <div className='valign'>
                                       <p>
                                         <ButtonGroup className="me-2" aria-label="First group">
-                                          <Link to="#" className='btn btn-danger' id="vidbtn">
-                                            <FontAwesomeIcon icon={faVideoCamera} />
+                                          <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonSearchQuickData.sermons_title,sermonSearchQuickData.sermons_id,values)}}>
+                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
                                         <ButtonGroup className="me-2" aria-label="Second group">
