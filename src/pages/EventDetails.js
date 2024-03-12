@@ -96,8 +96,8 @@ export const EventDetails = () => {
                     <div id="banneroverlay">
                         <div id="bannerid" className='text-center'>
                             <p id="navhistory">
-                                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
-                                <Link to="#" className='text-white' id="currentlink">Event Details</Link>
+                                <Link to="/" reloadDocument id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                                <Link to="/event-details" reloadDocument className='text-white' id="currentlink">Event Details</Link>
                             </p>
                             <h4>Event Details</h4>
 

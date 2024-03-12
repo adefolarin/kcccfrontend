@@ -42,8 +42,8 @@ export const News = () => {
                     <div id="banneroverlay">
                         <div id="bannerid" className='text-center'>
                             <p id="navhistory">
-                                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
-                                <Link to="#" className='text-white' id="currentlink">News</Link>
+                                <Link to="/" id="homelink" reloadDocument>Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                                <Link to="/news" reloadDocument className='text-white' id="currentlink">News</Link>
                             </p>
                             <h4>News</h4>
                         </div>

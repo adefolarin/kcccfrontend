@@ -18,7 +18,7 @@ import { serverurl } from '../../providers/ServerUrl';
 import { CDBAnimation, CDBContainer } from 'cdbreact';
 //import { Podcasts } from '../../components/Podcasts';
 import Modal from 'react-bootstrap/Modal';
-import { VideoModal } from '../../components/VideoModal';
+import { VideoModal2 } from '../../components/VideoModal2';
 
 
 import './Home.css'
@@ -245,7 +245,7 @@ export const Home = () => {
 
   return (
     <div>
-        <VideoModal show={show} videoid={videoid} handleClose={handleClose} />
+        <VideoModal2 show={show} videoid={videoid} handleClose={handleClose} />
 
       {/* Banner */}
       <div expand="lg">
@@ -277,7 +277,7 @@ export const Home = () => {
                             <Link to="/about" reloadDocument className='btn btn-danger' id="bannerbtn">Welcome Message</Link>
                           </ButtonGroup>
                           <ButtonGroup className="me-2" aria-label="Second group">
-                            <Link to="/livestream" reloadDocument className='btn btn-danger' id="bannerbtn">Join Us Now!</Link>
+                            <Link to="/livestream" reloadDocument className='btn btn-danger' id="bannerbtn">Join Us Live</Link>
                           </ButtonGroup>
 
                         </p>
@@ -494,7 +494,7 @@ export const Home = () => {
                                     <div className='valign'>
                                       <p>
                                         <ButtonGroup className="me-2" aria-label="First group">
-                                        <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonData.sermons_title,sermonData.sermons_id,values)}}>
+                                        <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonData.sermons_title,sermonData.sermons_file,values)}}>
                                              <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
@@ -574,7 +574,7 @@ export const Home = () => {
                                     <div className='valign'>
                                       <p>
                                         <ButtonGroup className="me-2" aria-label="First group">
-                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonSearchDeepData.sermons_title,sermonSearchDeepData.sermons_id,values)}}>
                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>

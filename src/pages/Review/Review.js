@@ -107,8 +107,8 @@ export const Review = () => {
                     <div id="banneroverlay">
                         <div id="bannerid" className='text-center'>
                             <p id="navhistory">
-                                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
-                                <Link to="#" className='text-white' id="currentlink">Year In Review</Link>
+                                <Link to="/" id="homelink" reloadDocument>Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                                <Link to="/review" reloadDocument className='text-white' id="currentlink">Year In Review</Link>
                             </p>
                             <h4>Year In Review</h4>
                         </div>

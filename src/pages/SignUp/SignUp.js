@@ -84,8 +84,8 @@ export const SignUp = () => {
                     <div id="banneroverlay">
                         <div id="bannerid" className='text-center'>
                             <p id="navhistory">
-                                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
-                                <Link to="#" className='text-white' id="currentlink">SIGN UP</Link>
+                                <Link to="/" id="homelink" reloadDocument>Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                                <Link to="/signup" reloadDocument className='text-white' id="currentlink">SIGN UP</Link>
                             </p>
                             <h4>SIGN UP</h4>
                         </div>
@@ -120,7 +120,7 @@ export const SignUp = () => {
                             <p className='text-center' id='bluecolor'>
                                 Are you an online member interested in becoming a full member?
                                 <br></br>
-                                Please the form to join and experience the full benefits of being a child of God
+                                Please fill the form to join and experience the full benefits of being a child of God
                             </p>
                             <br></br>
                         </div>
@@ -210,7 +210,7 @@ export const SignUp = () => {
                                          <Container>
                                           <Row style={{ border:'1px solid #eee', borderRadius:'5px', padding:'0', padding:'10px' }}>
                                             <Col>
-                                              <p>Are you born gain?</p>
+                                              <p>Are you born again?</p>
                                             </Col>
                                             <Col>
                                                 <Form.Check

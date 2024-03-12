@@ -40,8 +40,8 @@ export const Department = () => {
                     <div id="banneroverlay">
                         <div id="bannerid" className='text-center'>
                             <p id="navhistory">
-                                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
-                                <Link to="#" className='text-white' id="currentlink">Departments</Link>
+                                <Link to="/" id="homelink" reloadDocument>Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                                <Link to="/departments" reloadDocument className='text-white' id="currentlink">Departments</Link>
                             </p>
                             <h4>Departments</h4>
                         </div>

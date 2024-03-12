@@ -96,6 +96,7 @@ export function NavBar() {
                 <Nav.Link href="/livestream" className='navLink' id="navLink">Livestream</Nav.Link>
                 <Nav.Link href="/podcasts" className='navLink' id="navLink">Podcasts</Nav.Link>
                 <Nav.Link href="/donation" className='navLink' id="navLink">Donation</Nav.Link>
+                <Nav.Link href="/store" className='navLink' id="navLink">E Store</Nav.Link>
                 <NavDropdown title="Dropdown" className="navLink" style={{ display: 'none' }}>
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">

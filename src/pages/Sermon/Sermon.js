@@ -8,6 +8,8 @@ import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free
 import axios from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
 import { SearchFormGroup } from '../../components/Forms/SearchFormGroup';
+import Modal from 'react-bootstrap/Modal';
+import { VideoModal2 } from '../../components/VideoModal2';
 
 
 
@@ -163,12 +165,35 @@ export const Sermon = () => {
     fetchSermonData();
     fetchSermonTitleData();
     fetchSermonPreacherData();
-  }, [])
+  }, []);
+
+      // Loading the Video Modal
+      
+      const [show, setShow] = useState(false);
+
+      const [videotitle, setVideoTitle] = useState();
+      const [videoid, setVideoID] = useState();
+   
+      const handleClose = () => setShow(false);
+      
+      const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
+      const [fullscreen, setFullscreen] = useState(true);
+   
+   
+      const loadVideo = (videotitle,videoid,breakpoint) => {
+          //title = inputRef.current.value;
+          setVideoTitle(videotitle);
+          setVideoID(videoid);
+          setFullscreen(breakpoint);
+          setShow(true);
+      }
 
 
 
   return (
     <div>
+
+       <VideoModal2 show={show} videoid={videoid} handleClose={handleClose} />
 
       <div>
         <br></br><br></br>
@@ -177,8 +202,8 @@ export const Sermon = () => {
           <div id="banneroverlay">
             <div id="bannerid" className='text-center'>
               <p id="navhistory">
-                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
-                <Link to="#" className='text-white' id="currentlink">Sermons</Link>
+                <Link to="/" id="homelink" reloadDocument>Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                <Link to="/sermons" reloadDocument className='text-white' id="currentlink">Sermons</Link>
               </p>
               <h4>Sermons</h4>
             </div>
@@ -285,7 +310,7 @@ export const Sermon = () => {
                                     <div className='valign'>
                                       <p>
                                         <ButtonGroup className="me-2" aria-label="First group">
-                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonData.sermons_title,sermonData.sermons_file,values)}}>
                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
@@ -365,7 +390,7 @@ export const Sermon = () => {
                                     <div className='valign'>
                                       <p>
                                         <ButtonGroup className="me-2" aria-label="First group">
-                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonSearchDeepData.sermons_title,sermonSearchDeepData.sermons_file,values)}}>
                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
@@ -445,7 +470,7 @@ export const Sermon = () => {
                                     <div className='valign'>
                                       <p>
                                         <ButtonGroup className="me-2" aria-label="First group">
-                                          <Link to="#" className='btn btn-danger' id="vidbtn">
+                                          <Link to="#" className='btn btn-danger' id="vidbtn" onClick={() => {loadVideo(sermonSearchQuickData.sermons_title,sermonSearchQuickData.sermons_id,values)}}>
                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>

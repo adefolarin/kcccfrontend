@@ -107,8 +107,8 @@ export const DepartmentDetails = () => {
                     <div id="banneroverlay">
                         <div id="bannerid" className='text-center'>
                             <p id="navhistory">
-                                <Link to="#" id="homelink">Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
-                                <Link to="#" className='text-white' id="currentlink">Department Details</Link>
+                                <Link to="/" id="homelink" reloadDocument>Home &nbsp; &#60; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
+                                <Link to="/dept-details" reloadDocument className='text-white' id="currentlink">Department Details</Link>
                             </p>
                             <h4>{ deptdetail.deptcategories_name }</h4>
 
