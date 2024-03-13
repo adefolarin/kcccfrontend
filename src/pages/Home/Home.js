@@ -13,12 +13,16 @@ import { Event } from '../../components/Event';
 import { EventCountDownTimer } from '../../components/EventCountDownTimer';
 import { SocialMedia } from '../../components/SocialMedia';
 import { NavLink } from 'react-bootstrap';
+import { TypeAnimation } from 'react-type-animation';
 import axios  from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
 import { CDBAnimation, CDBContainer } from 'cdbreact';
+import { ReactTyped  } from "react-typed";
 //import { Podcasts } from '../../components/Podcasts';
 import Modal from 'react-bootstrap/Modal';
 import { VideoModal2 } from '../../components/VideoModal2';
+import { Fade, Bounce, Slide, Jump } from "react-swift-reveal";
+import { RWebShare } from "react-web-share";
 
 
 import './Home.css'
@@ -266,7 +270,9 @@ export const Home = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="caption">
-                    <h2>WELCOME TO KCCC</h2>
+                    <h2>
+                      <ReactTyped strings={["WELCOME TO KCCC"]} typeSpeed={300} loop />
+                    </h2>
                     <h6>KINGDOM CONNECTION CHRISTIAN CENTER</h6>
                     <p>The Wealthy Place Where Champions Are Raised! Kingdom Connection Christian Center is a Word Of Faith, non-denominational, full gospel church</p>
                     <div className="main-button-red">
@@ -373,7 +379,9 @@ export const Home = () => {
         <Container>
           <Row>
             <Col md={5}>
+            
               <Image src="images/about.png" thumbnail fluid id="homeaboutimg" />
+
             </Col>
             <Col md={7}>
               <Row>
@@ -498,7 +506,7 @@ export const Home = () => {
                                              <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
-                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                        {/*<ButtonGroup className="me-2" aria-label="Second group">
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faFileAudio} />
                                           </Link>
@@ -507,11 +515,22 @@ export const Home = () => {
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faDownload} />
                                           </Link>
-                                        </ButtonGroup>
+                                          </ButtonGroup>*/}
                                         <ButtonGroup className="me-2" aria-label="Second group">
+                                        <RWebShare
+                                              data={{
+                                                  text: "Web Share",
+                                                  url: sermonData.sermons_file,
+                                                  title: sermonData.sermons_title,
+                                              }}
+                                              onClick={() =>
+                                                  console.log("shared successfully!")
+                                              }
+                                         >
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faShareNodes} />
                                           </Link>
+                                        </RWebShare>
                                         </ButtonGroup>
 
                                       </p>
@@ -578,7 +597,7 @@ export const Home = () => {
                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
-                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                        {/*<ButtonGroup className="me-2" aria-label="Second group">
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faFileAudio} />
                                           </Link>
@@ -588,10 +607,22 @@ export const Home = () => {
                                             <FontAwesomeIcon icon={faDownload} />
                                           </Link>
                                         </ButtonGroup>
+                                        */}
                                         <ButtonGroup className="me-2" aria-label="Second group">
+                                        <RWebShare
+                                              data={{
+                                                  text: "Web Share",
+                                                  url: sermonSearchDeepData.sermons_file,
+                                                  title: sermonSearchDeepData.sermons_title,
+                                              }}
+                                              onClick={() =>
+                                                  console.log("shared successfully!")
+                                              }
+                                         >
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faShareNodes} />
                                           </Link>
+                                        </RWebShare>
                                         </ButtonGroup>
 
                                       </p>
@@ -658,7 +689,7 @@ export const Home = () => {
                                              <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
-                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                        {/*<ButtonGroup className="me-2" aria-label="Second group">
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faFileAudio} />
                                           </Link>
@@ -668,10 +699,22 @@ export const Home = () => {
                                             <FontAwesomeIcon icon={faDownload} />
                                           </Link>
                                         </ButtonGroup>
+                                        */}
                                         <ButtonGroup className="me-2" aria-label="Second group">
+                                        <RWebShare
+                                              data={{
+                                                  text: "Web Share",
+                                                  url: sermonSearchQuickData.sermons_file,
+                                                  title: sermonSearchQuickData.sermons_title,
+                                              }}
+                                              onClick={() =>
+                                                  console.log("shared successfully!")
+                                              }
+                                         >
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faShareNodes} />
                                           </Link>
+                                        </RWebShare>
                                         </ButtonGroup>
 
                                       </p>
@@ -722,8 +765,10 @@ export const Home = () => {
 
 
       {/* Sharing Our Faith */}
+
       <div>
         <br></br><br></br>
+        <Bounce>
         <Container style={{ backgroundColor: '#E1EDF3', padding: '50px' }}>
           <Row>
             <Col md={8}>
@@ -756,7 +801,9 @@ export const Home = () => {
             </Col>
           </Row>
         </Container>
+        </Bounce>
       </div>
+ 
 
 
       {/* Department */}
@@ -855,9 +902,11 @@ export const Home = () => {
         <Container style={{ backgroundColor: '#E1EDF3', padding: '50px' }}>
           <Row>
             <Col md={6}>
+                <Jump>
                 <div id="appimg">
                   <Image fluid src="images/app.png" thumbnail style={{ width:'90%' }} />
                 </div>
+                </Jump>
             </Col>
             <Col md={6}>
               <div id="downloaddiv">

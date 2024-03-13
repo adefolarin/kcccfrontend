@@ -10,6 +10,7 @@ import { serverurl } from '../../providers/ServerUrl';
 import { SearchFormGroup } from '../../components/Forms/SearchFormGroup';
 import Modal from 'react-bootstrap/Modal';
 import { VideoModal2 } from '../../components/VideoModal2';
+import { RWebShare } from "react-web-share";
 
 
 
@@ -325,9 +326,20 @@ export const Sermon = () => {
                                           </Link>
                                         </ButtonGroup>
                                         <ButtonGroup className="me-2" aria-label="Second group">
+                                        <RWebShare
+                                              data={{
+                                                  text: "Web Share",
+                                                  url: sermonData.sermons_file,
+                                                  title: sermonData.sermons_title,
+                                              }}
+                                              onClick={() =>
+                                                  console.log("shared successfully!")
+                                              }
+                                         >
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faShareNodes} />
                                           </Link>
+                                        </RWebShare>
                                         </ButtonGroup>
 
                                       </p>
@@ -394,7 +406,7 @@ export const Sermon = () => {
                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
-                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                       {/* <ButtonGroup className="me-2" aria-label="Second group">
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faFileAudio} />
                                           </Link>
@@ -404,10 +416,22 @@ export const Sermon = () => {
                                             <FontAwesomeIcon icon={faDownload} />
                                           </Link>
                                         </ButtonGroup>
+                                       */}
                                         <ButtonGroup className="me-2" aria-label="Second group">
+                                        <RWebShare
+                                              data={{
+                                                  text: "Web Share",
+                                                  url: sermonSearchDeepData.sermons_file,
+                                                  title: sermonSearchDeepData.sermons_title,
+                                              }}
+                                              onClick={() =>
+                                                  console.log("shared successfully!")
+                                              }
+                                         >
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faShareNodes} />
                                           </Link>
+                                        </RWebShare>
                                         </ButtonGroup>
 
                                       </p>
@@ -474,7 +498,7 @@ export const Sermon = () => {
                                             <FontAwesomeIcon icon={faVideoCamera} />
                                           </Link>
                                         </ButtonGroup>
-                                        <ButtonGroup className="me-2" aria-label="Second group">
+                                        {/*<ButtonGroup className="me-2" aria-label="Second group">
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faFileAudio} />
                                           </Link>
@@ -484,10 +508,22 @@ export const Sermon = () => {
                                             <FontAwesomeIcon icon={faDownload} />
                                           </Link>
                                         </ButtonGroup>
+                                         */}
                                         <ButtonGroup className="me-2" aria-label="Second group">
+                                        <RWebShare
+                                              data={{
+                                                  text: "Web Share",
+                                                  url: sermonSearchQuickData.sermons_file,
+                                                  title: sermonSearchQuickData.sermons_title,
+                                              }}
+                                              onClick={() =>
+                                                  console.log("shared successfully!")
+                                              }
+                                         >
                                           <Link to="#" className='btn btn-danger' id="vidbtn">
                                             <FontAwesomeIcon icon={faShareNodes} />
                                           </Link>
+                                        </RWebShare>
                                         </ButtonGroup>
 
                                       </p>

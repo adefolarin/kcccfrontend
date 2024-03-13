@@ -4,8 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideoCamera, faShareNodes, faDownload, faFileAudio, faUser, faLocation, faClock, faPerson, faArrowLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 
 export const Departments = ({ depts }) => {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+
+    };
+
     return (
         <div>
             <div>
@@ -22,11 +33,12 @@ export const Departments = ({ depts }) => {
                             <div>
                                 <br></br>
                                 <Row>
+                                <Slider {...settings}>
                                 {
                                 depts && depts.length > 0 && depts.map((deptData) => {
                                     return <>
                                     {deptData.deptcategories_name !== '' ?
-                                    <Col md={4}>
+                                    <Col sm={12} md={12}>
                                         <Card id="deptcard">
                                             <Card.Title>
                                                 <div className='text-center' id="bluecolor">
@@ -55,11 +67,11 @@ export const Departments = ({ depts }) => {
                                         </Card.Body>
                                     </Card>
                                      </Col>
-                                    }
+                                    }    
                                     </>
                                     })
                                    }
-   
+                                   </Slider>
                                 </Row>
                             </div>
                         </Col>

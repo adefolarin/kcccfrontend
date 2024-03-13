@@ -11,5 +11,7 @@ export const liveserviceurl = 'https://www.googleapis.com/youtube/v3/search?key=
 
 export const serverurl = "http://127.0.0.1:8000";
 
+export const clienturl  = "http://127.0.0.1:3000";
+
 //export const serverurl = "https://techtracenigeria.com.ng/kccc";
 

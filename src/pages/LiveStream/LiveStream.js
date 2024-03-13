@@ -13,6 +13,8 @@ import { servicechannelid } from '../../providers/ServerUrl';
 import { LiveCountDownTimer } from '../../components/LiveCountDownTimer';
 import Modal from 'react-bootstrap/Modal';
 import { VideoModal } from '../../components/VideoModal';
+import { RWebShare } from "react-web-share";
+import './LiveStream.css';
 
 
 export const LiveStream = () => {
@@ -246,6 +248,29 @@ export const LiveStream = () => {
                                     </Link>
                                    
 
+                                    </ButtonGroup>
+                                   {/* <ButtonGroup className="me-2" aria-label="First group">
+                                  
+                                      <Link to={"https://www.youtubepp.com/embed/" + sermonData.id.videoId} className='btn btn-danger' id="vidbtn">
+                                        <FontAwesomeIcon icon={faDownload} />
+                                      </Link>
+                                   </ButtonGroup>
+                                   */}
+                                   <ButtonGroup className="me-2" aria-label="Second group">
+                                      <RWebShare
+                                            data={{
+                                                text: "Web Share",
+                                                url: "https://www.youtubepp.com/embed/" + sermonData.id.videoId,
+                                                title: sermonData.snippet.title,
+                                            }}
+                                            onClick={() =>
+                                                console.log("shared successfully!")
+                                            }
+                                        >
+                                        <Link to="#" className='btn btn-danger' id="vidbtn">
+                                          <FontAwesomeIcon icon={faShareNodes} />
+                                        </Link>
+                                      </RWebShare>
                                     </ButtonGroup>
 
                                 </p>

@@ -3,7 +3,8 @@ import { Card, Image } from 'react-bootstrap';
 import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { Container, Col, Row, Button, ButtonGroup, ButtonToolbar, Table, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { serverurl } from '../providers/ServerUrl';
+import copy from "copy-to-clipboard";
+import { serverurl, clienturl } from '../providers/ServerUrl';
 import './EventDetail.css';
 
 export const EventDetails = () => {
@@ -84,6 +85,29 @@ export const EventDetails = () => {
         }
       }
     };
+
+
+    // COPY LINK TO CLIPBOARD
+    const [copyText, setCopyText] = useState("");
+    const [buttoncopytext, setButtonCopyText] = useState("");
+
+    /*const Clipboard = () => {
+     
+        setCopyText(clienturl + "/event-details/" + eventid);
+     
+         copy(copyText);
+         setButtonCopyText("Copied")
+   }*/
+
+   const Clipboard = async () => {
+    try {
+        await navigator.clipboard.writeText(clienturl + "/event-details/" + eventid);
+        setButtonCopyText("Link copied to clipboard!");
+    } catch (err) {
+        setButtonCopyText("Unable to copy link to clipboard");
+    }
+   };
+
 
 
     return (
@@ -274,11 +298,15 @@ export const EventDetails = () => {
                                                 }
                                             </ButtonGroup>
                                             <ButtonGroup className="me-2" aria-label="First group">
-                                                <Button class="btn btn-danger" style={{ backgroundColor: '#135592', color: '#fff', borderRadius: '0', border: 'none', fontWeight: 'bold' }}>
+                                                <Button class="btn btn-danger" style={{ backgroundColor: '#135592', color: '#fff', borderRadius: '0', border: 'none', fontWeight: 'bold' }}onClick={Clipboard}>
                                                     Copy Link
                                                 </Button>
                                             </ButtonGroup>
+                                    
                                         </ButtonToolbar>
+                                        <p className='text-center'>
+                                          {buttoncopytext}
+                                        </p>
                                     </Card.Body>
                                 </Card>
                             </div>
