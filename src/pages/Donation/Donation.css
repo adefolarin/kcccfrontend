@@ -1,26 +1,25 @@
 
-.givecard {
-    background-color: #135592;
-    color: #fff;
+.donationcard {
+    background-color: #E0E0E0;
 }
 
-#giveformid {
+#donationformid {
     font-size: 16px; 
     padding: 15px;
-    background-color:#3878A3; 
-    border:none; 
-    color:#fff;
+    background-color:transparent; 
+    border-color: #B0B0B0;
+    color:#3878A3;
 }
 
-#giveformid :not(active){
+#donationformid :not(active){
     color:white;
  }
 
- #giveformid :focus{
+ #donationformid :focus{
     color:white;
  }
 
- #givebtn {
+ #donationbtn {
     background-color: #fff;
     color: #3878A3;
     font-weight: bold;

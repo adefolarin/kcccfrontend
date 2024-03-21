@@ -152,7 +152,27 @@ export const Give = () => {
 
        const onCancel = () => {
         setErrorMessages("You cancelled the transaction");
+      }
+
+      const [showpaypal, setShowPaypal] = useState(false);
+      const [showzelle, setShowZelle] = useState(false);
+      const [paymentplatform, setPaymentPlatform] = useState();
+
+      const handleSelectChange = (e) => {
+        setPaymentPlatform(e.target.value);
+        if(e.target.value === "paypal") {
+            setShowPaypal(true);
+            setShowZelle(false);
+        } else if(e.target.value === "zelle")  {
+            setShowPaypal(false);
+            setShowZelle(true);
+        } else {
+            setShowPaypal(false);
+            setShowZelle(false);
+
+        }
      }
+
    
 
     return (
@@ -197,32 +217,76 @@ export const Give = () => {
                         <Col md={3}></Col>
                         <Col md={6}>
                             <Card id="deptcard" className='givecard'>
-                                <Card.Header style={{ backgroundColor: '#135592', color: '#fff', fontSize: '20px', textAlign: 'center' }}>
-                                    GIVE
-                                </Card.Header>
                                 <Card.Body>
                                     <Form>
 
                                     <InputGroup className="mb-3" controlId="">
+                                            <Form.Control type="text" size="lg" placeholder="Enter Amount" name="givings_amount" id='giveformid'
+                                                value={givings_amount} 
+                                                onChange={handleInputChange} required />
+                                    </InputGroup>
+                                  <br></br>
+                                   <div className='text-center'>
+                                    <ButtonGroup className="me-2" aria-label="First group">
+                                        <Link to="#" className='btn btn-danger' id="givebtn">
+                                            $50
+                                        </Link>
+                                    </ButtonGroup>
+                                    <ButtonGroup className="me-2" aria-label="Second group">
+                                        <Link to="#" className='btn btn-danger' id="givebtn">
+                                            $100
+                                        </Link>
+
+                                    </ButtonGroup>
+                                    <ButtonGroup className="me-2" aria-label="Second group">
+                                        <Link to="#" className='btn btn-danger' id="givebtn">
+                                            $1000
+                                        </Link>
+                                    </ButtonGroup>
+                                   </div>
+                            
+                                <br></br><br></br>
+                                <div className='text-center'>
+                                    <ButtonGroup className="me-2" aria-label="Second group">
+                                        <Link to="#" className='btn btn-danger' id="givebtn">
+                                            $200
+                                        </Link>
+                                    </ButtonGroup>
+                                    <ButtonGroup className="me-2" aria-label="Second group">
+                                        <Link to="#" className='btn btn-danger' id="givebtn">
+                                            $500
+                                        </Link>
+                                    </ButtonGroup>
+                                    <ButtonGroup className="me-2" aria-label="Second group">
+                                        <Link to="#" className='btn btn-danger' id="givebtn">
+                                            $10000
+                                        </Link>
+                                    </ButtonGroup>
+                                </div>
+                                <br></br>
+                                      {
+                                       showzelle === false ?
+                                       <div>
+                                       <InputGroup className="mb-3" controlId="">
                                             <Form.Control type="text" size="lg" placeholder="Full Name" style={{ fontSize: '16px', padding: '15px' }}
-                                                value={givings_name} onChange={(e) => setGiveName(e.target.value)} required/>
+                                                value={givings_name} onChange={(e) => setGiveName(e.target.value)} required id='giveformid'/>
                                         </InputGroup>
 
                                         <InputGroup className="mb-3" controlId="">      
                                             <Form.Control type="email" size="lg" placeholder="Email" style={{ fontSize: '16px', padding: '15px' }}
-                                                value={givings_email} onChange={(e) => setGiveEmail(e.target.value)} required />
+                                                value={givings_email} onChange={(e) => setGiveEmail(e.target.value)} required id='giveformid'/>
                                       
                                         </InputGroup>
 
                                         <InputGroup className="mb-3" controlId="">
                                             <Form.Control type="text" size="lg" placeholder="Pnone Number" style={{ fontSize: '16px', padding: '15px' }}
-                                                value={givings_pnum} onChange={(e) => setGivePnum(e.target.value)} required/>
+                                                value={givings_pnum} onChange={(e) => setGivePnum(e.target.value)} required id='giveformid'/>
                                         </InputGroup>
 
                                         
                                         <InputGroup>
                                         <Form.Select type="text" size="lg" style={{ fontSize: '16px', padding: '15px' }}
-                                                value={givings_type} onChange={(e) => setGiveCategory(e.target.value)} required>
+                                                value={givings_type} onChange={(e) => setGiveCategory(e.target.value)} required id='giveformid'>
                                                 <option value=''>Select Giving Category</option>
                                                 {
                                                 givingcategory && givingcategory.length > 0 && givingcategory.map((givingCatData, index) => {
@@ -236,14 +300,23 @@ export const Give = () => {
                                                 }
                                         </Form.Select>
                                         </InputGroup>
+                                        </div> : ''
+                                        }
+                                        
+
+                                         <br></br>
+                                        <InputGroup>
+                                        <Form.Select type="text" size="lg" style={{ fontSize: '16px', padding: '15px' }}
+                                                value={paymentplatform} onChange={handleSelectChange} required id='giveformid'>
+                                                <option value=''>Select Payment Platform</option>
+                                                <option value='paypal'>PayPal</option>
+                                                <option value='zelle'>Zelle</option>
+                                                
+                                        </Form.Select>
+                                        </InputGroup>
                                         <br></br>
 
-                                        <InputGroup className="mb-3" controlId="">
-                                            <Form.Control type="text" size="lg" placeholder="Enter Amount" style={{ fontSize: '16px', padding: '15px' }} name="givings_amount"
-                                                value={givings_amount} 
-                                                onChange={handleInputChange} required />
-                                        </InputGroup>
-                                      
+                                     
 
                                     </Form>
 
@@ -264,6 +337,20 @@ export const Give = () => {
 
                                     </div>
 
+
+                                    <div>
+
+                                    {
+                                    showzelle ? 
+                                    (
+                                    <div className='alert alert-success' style={{ fontWeight:'bold' }}>
+                                        Make the payment of ${givings_amount} to following Zelle account: donation@kccconline.org
+                                    </div>
+                                    ) : ''
+                                    }
+
+                                    </div>
+
             
                                     {/*<PayPalButton
                                         createOrder={(data,actions) => createOrder(data, actions)}
@@ -272,6 +359,7 @@ export const Give = () => {
 
                                 <PayPalScriptProvider 
                                 options={{ clientId: "AcsILzIwRTitCuyvWbiloGt4jh1Li8s7s24KF5EEoOylTMA83IGvs4pXA0B5AdOlUJJhuE1jVOJJk9zH" }}><PayPalButtons
+                                       className={showpaypal ? 'paypalbuttonshow' : 'paypalbuttonhide'} 
                                        onClick={OnCheckForEmptyValues}
                                        createOrder={onCreateOrder}
                                        onApprove={onApproveOrder}

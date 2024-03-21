@@ -9,9 +9,11 @@ export const apiKey = 'AIzaSyCigpYGgD6oSf4PfKLXn1f_kT7ADo01ak0';
 export const liveserviceurl = 'https://www.googleapis.com/youtube/v3/search?key=' 
 + apiKey + '&channelId=' + servicechannelid + '&part=snippet,id&maxResults=1&type=video&eventType=live';
 
-export const serverurl = "http://127.0.0.1:8000";
+//export const serverurl = "http://127.0.0.1:8000";
 
-export const clienturl  = "http://127.0.0.1:3000";
+//export const clienturl  = "http://127.0.0.1:3000";
 
-//export const serverurl = "https://techtracenigeria.com.ng/kccc";
+export const serverurl = "https://techtracenigeria.com.ng/kccc";
+
+export const clienturl = "https://kcccfrontend.vercel.app";
 
