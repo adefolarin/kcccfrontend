@@ -21,7 +21,7 @@ import { ReactTyped  } from "react-typed";
 //import { Podcasts } from '../../components/Podcasts';
 import Modal from 'react-bootstrap/Modal';
 import { VideoModal2 } from '../../components/VideoModal2';
-import { Fade, Bounce, Slide, Jump } from "react-swift-reveal";
+import { Fade, Bounce, Slide, Jump, Roll, Flip, Rotate, Flash, Jello,Pulse, RubberBand, Shake, Swing, Tada, Wobble, HeadShake, Pop, Spin, LightSpeed } from "react-swift-reveal";
 import { RWebShare } from "react-web-share";
 
 
@@ -302,6 +302,7 @@ export const Home = () => {
 
       {/* Year in Review and Event Clock */}
       <div>
+      <Fade delay={300} duration={2000}>
         <Container style={{ position: 'relative' }}>
           <Row>
             <Col sm={12} md={5}>
@@ -372,10 +373,12 @@ export const Home = () => {
             </Col>
           </Row>
         </Container>
+        </Fade>
       </div>
 
       {/*  About  */}
       <div id="sectionmargin" className='homeabout'>
+      <Fade delay={300} duration={2000}>
         <Container>
           <Row>
             <Col md={5}>
@@ -419,10 +422,12 @@ export const Home = () => {
             </Col>
           </Row>
         </Container>
+        </Fade>
       </div>
 
       {/*  Watch and Listen */}
       <div id="sectionmargin">
+      <Fade delay={300} duration={2000}>
         <Container>
           <Row>
             <Col sm={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
@@ -755,12 +760,15 @@ export const Home = () => {
             </Col>
           </Row>
         </Container>
+        </Fade>
       </div>
 
 
       {/* Social Media */}
       <div>
+      <Fade delay={300} duration={2000}>
         <SocialMedia />
+      </Fade>
       </div>
 
 
@@ -768,7 +776,7 @@ export const Home = () => {
 
       <div>
         <br></br><br></br>
-        <Bounce>
+        <Fade delay={300} duration={2000}>
         <Container style={{ backgroundColor: '#E1EDF3', padding: '50px' }}>
           <Row>
             <Col md={8}>
@@ -801,14 +809,16 @@ export const Home = () => {
             </Col>
           </Row>
         </Container>
-        </Bounce>
+        </Fade>
       </div>
  
 
 
       {/* Department */}
       <div>
+      <Fade delay={300} duration={2000}>
         <Departments depts={depts} />
+      </Fade>
       </div>
 
 
@@ -816,6 +826,7 @@ export const Home = () => {
       {/* Support Our Mission */}
       <div>
         <br></br><br></br>
+        <Fade delay={300} duration={2000}>
         <Container>
           <div style={{ position: 'relative' }}>
             <Image fluid src="images/img3.jpg" alt="Card image" style={{ width: '100%', height: '270px' }} />
@@ -830,13 +841,16 @@ export const Home = () => {
             </div>
           </div>
         </Container>
+        </Fade>
       </div>
 
 
 
       {/* Event */}
       <div>
+      <Fade delay={300} duration={2000}>
         <Event event = {events} eventfileurl={eventfileurls} />
+      </Fade>
       </div>
 
 
@@ -844,6 +858,7 @@ export const Home = () => {
       {/*   E-STORE   */}
       <div>
         <br></br><br></br>
+        <Fade delay={300} duration={2000}>
         <Container style={{ backgroundColor: '#A7C8DD' }} id="storecontainer">
           <Row>
             <Col md={7}>
@@ -853,7 +868,7 @@ export const Home = () => {
                   Explore our e-store for a soulful collection of faith-filled 
                   books authored by Bishop Israel Ade Ajala.
                 </p>
-                <Link to="/estore" className='btn btn-danger' id="homegivebtn">
+                <Link to="#" className='btn btn-danger' id="homegivebtn">
                   Explore Now
                 </Link>
               </div>
@@ -865,11 +880,13 @@ export const Home = () => {
             </Col>
           </Row>
         </Container>
+        </Fade>
       </div>
 
       {/*  FOOD BANK  */}
       <div>
         <br></br><br></br>
+        <Fade delay={300} duration={2000}>
         <Container style={{ backgroundColor: '#E1EDF3' }} id="storecontainer">
           <Row>
             <Col md={5}>
@@ -893,18 +910,20 @@ export const Home = () => {
             </Col>
           </Row>
         </Container>
+        </Fade>
       </div>
 
 
       {/*  APP DOWNLOAD    */}
       <div>
         <br></br><br></br>
+        <Fade delay={300} duration={2000}>
         <Container style={{ backgroundColor: '#E1EDF3', padding: '50px' }}>
           <Row>
             <Col md={6}>
-                <Jump>
+                <Jump delay={600} duration={2300}>
                 <div id="appimg">
-                  <Image fluid src="images/app.png" thumbnail style={{ width:'90%' }} />
+                  <Image fluid src="images/app.png" thumbnail style={{ width:'90%',backgroundColor:'transparent',border:'none' }} />
                 </div>
                 </Jump>
             </Col>
@@ -928,6 +947,7 @@ export const Home = () => {
             </Col>
           </Row>
         </Container>
+        </Fade>
       </div>
 
 

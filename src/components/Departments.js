@@ -14,8 +14,27 @@ export const Departments = ({ depts }) => {
       slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
+      autoplaySpeed: 2000,
 
-    };
+};
+
+    // Create a MediaQuery object
+const y = window.matchMedia("(max-width: 767px)");
+
+const changeSize = (x) => {
+  if(x.matches) { 
+    settings.slidesToShow = 1
+  } else {
+    settings.slidesToShow = 3
+  }
+}
+
+changeSize(y)
+
+// Attach listener function on state changes
+y.addEventListener("change", function() {
+  changeSize(y);
+});
 
     return (
         <div>
@@ -39,7 +58,7 @@ export const Departments = ({ depts }) => {
                                     return <>
                                     {deptData.deptcategories_name !== '' ?
                                     <Col sm={12} md={12}>
-                                        <Card id="deptcard">
+                                        <Card id="deptcard" className="deptslide">
                                             <Card.Title>
                                                 <div className='text-center' id="bluecolor">
                                                     <button className='btn' style={{ backgroundColor: '#135592', color: '#fff', borderRadius: '50%', marginTop: '10px', marginBottom: '10px' }}><FontAwesomeIcon icon={faPerson} /></button>

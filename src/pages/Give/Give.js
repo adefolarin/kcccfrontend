@@ -9,6 +9,7 @@ import { faEnvelope, faPhone, faMapLocationDot, faMapLocation, faAddressCard, fa
 import axios from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
 //import ReactDOM from "react-dom";
+import './Give.css';
 
 import { useSignal } from '@preact/signals-react';
 
@@ -175,15 +176,27 @@ export const Give = () => {
                 </div>
             </div>
 
+            <br></br>
+
+            <div>
+                <Container>
+                    <Row>
+                        <Col md={12}>
+                            <Card id="deptcard" className="eventdetailimg">
+                                <Card.Img id="foodbankimg" variant="top" src="images/givebanner.png" thumbnail />
+                            </Card>
+                        </Col>
+                    </Row>
+                    <br></br><br></br>
+                </Container>
+            </div>
             <br></br><br></br>
-
-
             <div>
                 <Container>
                     <Row>
                         <Col md={3}></Col>
                         <Col md={6}>
-                            <Card id="deptcard">
+                            <Card id="deptcard" className='givecard'>
                                 <Card.Header style={{ backgroundColor: '#135592', color: '#fff', fontSize: '20px', textAlign: 'center' }}>
                                     GIVE
                                 </Card.Header>

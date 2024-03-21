@@ -8,6 +8,9 @@ import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free
 import axios from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
 import '../EventDetail.css';
+import './Department.css';
+import Slider from 'react-slick';
+
 
 export const Department = () => {
 
@@ -27,6 +30,36 @@ export const Department = () => {
        useEffect(() => {
           fetchDeptsData();
        },[])
+
+
+       const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+  
+  };
+  
+            // Create a MediaQuery object
+        const y = window.matchMedia("(max-width: 767px)");
+        
+        const changeSize = (x) => {
+            if(x.matches) { 
+            settings.slidesToShow = 1
+            } else {
+            settings.slidesToShow = 3
+            }
+        }
+        
+        changeSize(y)
+        
+        // Attach listener function on state changes
+        y.addEventListener("change", function() {
+            changeSize(y);
+        });
 
 
 
@@ -56,12 +89,13 @@ export const Department = () => {
                             <div>
                                 <br></br>
                                 <Row>
+                                <Slider {...settings}>
                                 {
                                 depts && depts.length > 0 && depts.map((deptData) => {
                                     return <>
                                     {deptData.deptcategories_name !== '' ?
-                                    <Col md={4}>
-                                        <Card id="deptcard">
+                                    <Col md={12}>
+                                        <Card id="deptcard" className='deptslide'>
                                             <Card.Title>
                                                 <div className='text-center' id="bluecolor">
                                                     <button className='btn' style={{ backgroundColor: '#135592', color: '#fff', borderRadius: '50%', marginTop: '10px', marginBottom: '10px' }}><FontAwesomeIcon icon={faPerson} /></button>
@@ -93,8 +127,9 @@ export const Department = () => {
                                     </>
                                     })
                                    }
-   
+                                  </Slider>
                                 </Row>
+                               
                             </div>
                         </Col>
                     </Row>

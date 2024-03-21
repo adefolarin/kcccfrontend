@@ -5,6 +5,7 @@ import { Container, Col, Row, Button, ButtonGroup, ButtonToolbar, Table, Form } 
 import axios from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
 import '../EventDetail.css';
+import Slider from 'react-slick';
 
 export const Event = () => {
 
@@ -28,7 +29,36 @@ export const Event = () => {
      
        useEffect(() => {
           fetchEventsData();
-       },[])
+       },[]);
+
+       const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+
+   };
+
+    // Create a MediaQuery object
+    const y = window.matchMedia("(max-width: 767px)");
+
+    const changeSize = (x) => {
+        if(x.matches) { 
+        settings.slidesToShow = 1
+        } else {
+        settings.slidesToShow = 3
+        }
+    }
+
+    changeSize(y)
+
+    // Attach listener function on state changes
+    y.addEventListener("change", function() {
+        changeSize(y);
+    });
 
 
 
@@ -55,12 +85,13 @@ export const Event = () => {
             <Container>
                 <Row>
                     <br></br><br></br><br></br>
+                    <Slider {...settings}>
                     {
                         events && events.length > 0 && events.map((eventData) => {
                             return <>
                                 {eventData.events_title !== '' || eventData.events_enddate > eventData.datenow ?
-                                    <Col md={4}>
-                                        <Card id="deptcard">
+                                    <Col md={12}>
+                                        <Card id="deptcard" className='deptslide'>
                                             <Card.Img variant="top" src={eventfileurl + eventData.events_file} />
                                             <Card.Body className='text-center'>
                                                 <Card.Title>
@@ -85,7 +116,7 @@ export const Event = () => {
                                             </Card.Body>
                                         </Card>
                                     </Col> :
-                                    <Col md={12}>
+                                    <Col md={12} style={{display:'none'}}>
                                         <Card id="deptcard">
                                             <Card.Body className='text-center'>
                                                 <Card.Title>
@@ -98,6 +129,7 @@ export const Event = () => {
                             </>
                         })
                     }
+                    </Slider>
                 </Row>
 
 

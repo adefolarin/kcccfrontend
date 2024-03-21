@@ -6,7 +6,38 @@ import { faTwitter, faFacebook, faInstagram, faYoutube } from '@fortawesome/free
 import { Link } from 'react-router-dom';
 import { serverurl } from '../providers/ServerUrl';
 
+import Slider from 'react-slick';
+
 export const Event = ({ event, eventfileurl }) => {
+
+        const settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+    
+       };
+    
+        // Create a MediaQuery object
+    const y = window.matchMedia("(max-width: 767px)");
+    
+    const changeSize = (x) => {
+        if(x.matches) { 
+        settings.slidesToShow = 1
+        } else {
+        settings.slidesToShow = 3
+        }
+    }
+    
+    changeSize(y)
+    
+    // Attach listener function on state changes
+    y.addEventListener("change", function() {
+        changeSize(y);
+    });
     return (
         <div>
             <br></br><br></br>
@@ -18,12 +49,13 @@ export const Event = ({ event, eventfileurl }) => {
                     </Col>
                     <Col md={4}><hr style={{ borderTop: '1px solid #848484' }}></hr></Col>
                     <br></br><br></br><br></br>
+                    <Slider {...settings}>
                     {
                         event && event.length > 0 && event.map((eventData) => {
                             return <>
                                 {eventData.events_title !== '' || eventData.events_enddate > eventData.datenow ?
-                                    <Col md={4}>
-                                        <Card id="deptcard">
+                                    <Col md={12}>
+                                        <Card id="deptcard" className='deptslide'>
                                             <Card.Img variant="top" src={eventfileurl + eventData.events_file} />
                                             <Card.Body className='text-center'>
                                                 <Card.Title>
@@ -61,6 +93,7 @@ export const Event = ({ event, eventfileurl }) => {
                             </>
                         })
                     }
+                    </Slider>
                 </Row>
 
 
