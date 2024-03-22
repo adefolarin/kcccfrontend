@@ -10,6 +10,7 @@ import axios from 'axios';
 import { serverurl } from '../../providers/ServerUrl';
 //import ReactDOM from "react-dom";
 import './Donation.css';
+import { PaymentImages } from '../../components/PaymentImages';
 
 import { useSignal } from '@preact/signals-react';
 
@@ -376,7 +377,14 @@ export const Donation = () => {
             </div>
 
  
-            <br></br>
+            <br></br><br></br><br></br>
+
+
+            <div>
+            <PaymentImages />
+            </div>
+
+            <br></br><br></br>
 
 
 

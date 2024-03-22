@@ -14,6 +14,7 @@ import './Give.css';
 import { useSignal } from '@preact/signals-react';
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PaymentImages } from '../../components/PaymentImages';
 
 
 export const Give = () => {
@@ -386,7 +387,14 @@ export const Give = () => {
             </div>
 
  
-            <br></br>
+            <br></br><br></br><br></br>
+
+
+            <div>
+              <PaymentImages />
+            </div>
+
+            <br></br><br></br>
 
 
 
